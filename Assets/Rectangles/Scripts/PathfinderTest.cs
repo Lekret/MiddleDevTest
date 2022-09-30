@@ -42,7 +42,7 @@ namespace Rectangles.Scripts
             }
         }
 
-        private void DrawRectangle(Rectangle rect)
+        private static void DrawRectangle(Rectangle rect)
         {
             var center = (rect.Min + rect.Max) / 2f;
             var size = rect.Max - rect.Min;
