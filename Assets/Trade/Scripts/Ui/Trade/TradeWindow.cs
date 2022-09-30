@@ -13,11 +13,11 @@ namespace Trade.Scripts.Ui.Trade
         public void Init(
             ItemContainer player, 
             ItemContainer trader,
-            IHoveringItemSlot hoveringItemSlot,
+            IDraggableItemSlot draggableItemSlot,
             IItemTransferHandler itemTransferHandler)
         {
-            _playerGrid.Init(player, hoveringItemSlot, itemTransferHandler);
-            _traderGrid.Init(trader, hoveringItemSlot, itemTransferHandler);
+            _playerGrid.Init(player, draggableItemSlot, itemTransferHandler);
+            _traderGrid.Init(trader, draggableItemSlot, itemTransferHandler);
         }
     }
 }

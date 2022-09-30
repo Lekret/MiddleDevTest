@@ -11,17 +11,17 @@ namespace Trade.Scripts.Ui.Trade
         [SerializeField] private Transform _slotContainer;
 
         private ItemContainer _items;
-        private IHoveringItemSlot _hoveringItemSlot;
+        private IDraggableItemSlot _draggableItemSlot;
         private IItemTransferHandler _itemTransferHandler;
         private readonly List<ItemSlot> _slots = new List<ItemSlot>();
 
         public void Init(
             ItemContainer items,
-            IHoveringItemSlot hoveringItemSlot, 
+            IDraggableItemSlot draggableItemSlot, 
             IItemTransferHandler itemTransferHandler)
         {
             _items = items;
-            _hoveringItemSlot = hoveringItemSlot;
+            _draggableItemSlot = draggableItemSlot;
             _itemTransferHandler = itemTransferHandler;
             ConfigureSize();
             InitSlots(items.Items);
@@ -77,7 +77,7 @@ namespace Trade.Scripts.Ui.Trade
         {
             if (!slot.Item.IsValid())
                 return;
-            _hoveringItemSlot.SetItem(slot.Item);
+            _draggableItemSlot.SetItem(slot.Item);
             _itemTransferHandler.SetSource(_items, slot.Item);
             slot.HideItem();
         }
@@ -86,14 +86,14 @@ namespace Trade.Scripts.Ui.Trade
         {
             if (!slot.Item.IsValid())
                 return;
-            _hoveringItemSlot.Hide();
+            _draggableItemSlot.Hide();
             _itemTransferHandler.Clear();
             slot.ShowItem();
         }
         
         private void OnSlotDropped(ItemSlot slot)
         {
-            _hoveringItemSlot.Hide();
+            _draggableItemSlot.Hide();
             _itemTransferHandler.TransferTo(_items, slot.Item, slot.Index);
         }
 

@@ -2,7 +2,7 @@
 
 namespace Trade.Scripts.Ui.Trade
 {
-    public interface IHoveringItemSlot
+    public interface IDraggableItemSlot
     {
         void SetItem(Item item);
         void Hide();

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Trade.Scripts.Ui.Trade
 {
-    public class HoveringItemSlotWindow : UiWindow, IHoveringItemSlot
+    public class DraggableItemSlotWindow : UiWindow, IDraggableItemSlot
     {
         [SerializeField] private Image _icon;
 

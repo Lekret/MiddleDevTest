@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4322278560796835102}
   - component: {fileID: 1021348619160948354}
   m_Layer: 0
-  m_Name: HoveringItemSlotWindow
+  m_Name: DraggableItemSlotWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -19,23 +19,23 @@ namespace Trade.Scripts.Infrastructure
         {
             var player = new Player(new Wallet(PlayerData.InitialCoins), new ItemContainer(10));
             AddItems(player.Items, PlayerData.InitialItems);
-            
             var trader = new Trader(new Wallet(TraderData.InitialCoins), new ItemContainer(10));
-            AddItems(trader.Items, TraderData.InitialItems);
+            AddItems(trader.Items, TraderData.InitialItems, TraderData.SellCostMultiplier);
+            
             var uiFactory = new UiFactory(UiConfiguration);
             uiFactory.Init();
-            var hoveringItem = uiFactory.Create<HoveringItemSlotWindow>();
+            var draggableItemSlot = uiFactory.Create<DraggableItemSlotWindow>();
             uiFactory.Create<CoinsWindow>().Init(player.Wallet);
             var itemTransferHandler = new ItemTransferHandler();
-            uiFactory.Create<TradeWindow>().Init(player.Items, trader.Items, hoveringItem, itemTransferHandler);
-            hoveringItem.PlaceAsFirst();
+            uiFactory.Create<TradeWindow>().Init(player.Items, trader.Items, draggableItemSlot, itemTransferHandler);
+            draggableItemSlot.PlaceAsFirst();
         }
 
-        private static void AddItems(ItemContainer items, IEnumerable<ItemData> itemData)
+        private static void AddItems(ItemContainer items, IEnumerable<ItemData> itemData, float costMultiplier = 1)
         {
             foreach (var data in itemData)
             {
-                items.Add(new Item(data));
+                items.Add(new Item(data, costMultiplier));
             }
         }
     }
