@@ -8,7 +8,7 @@ namespace Rectangles.Scripts
     {
         public Rectangle First;
         public Rectangle Second;
-        public Vector3 Start;
-        public Vector3 End;
+        public Vector2 Start;
+        public Vector2 End;
     }
 }

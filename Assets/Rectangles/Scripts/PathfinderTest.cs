@@ -9,24 +9,31 @@ namespace Rectangles.Scripts
         [SerializeField] private Vector2 _from;
         [SerializeField] private Vector2 _to;
         [SerializeField] private Edge[] _edges;
-        
-        private void Start()
-        {
-            CalcPath();
-        }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-                CalcPath();
-        }
-
+        [ContextMenu("CalcPath")]
         private void CalcPath()
         {
             var pathFinder = new PathFinder();
             var path = pathFinder.GetPath(_from, _to, _edges);
-            var linePosition = path.Select(x => (Vector3) x).ToArray();
-            _lineRenderer.SetPositions(linePosition);
+            var positions = path.Select(x => (Vector3) x).ToArray();
+            _lineRenderer.positionCount = positions.Length;
+            _lineRenderer.SetPositions(positions);
+        }
+
+        private void OnDrawGizmos()
+        {
+            foreach (var edge in _edges)
+            {
+                DrawRectangle(edge.First);
+                DrawRectangle(edge.Second);
+            }
+        }
+
+        private void DrawRectangle(Rectangle rect)
+        {
+            var center = (rect.Min + rect.Max) / 2f;
+            var size = rect.Max - rect.Min;
+            Gizmos.DrawWireCube(center, new Vector3(size.x, size.y, 1));
         }
     }
 }

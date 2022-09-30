@@ -7,11 +7,15 @@ namespace Rectangles.Scripts
     {
         public IEnumerable<Vector2> GetPath(Vector2 from, Vector2 to, IEnumerable<Edge> edges)
         {
-            return new List<Vector2>
+            var result = new List<Vector2>();
+            result.Add(from);
+            foreach (var edge in edges)
             {
-                Vector2.right,
-                Vector2.down
-            };
+                var edgeMid = (edge.Start + edge.End) / 2f;
+                result.Add(edgeMid);
+            }
+            result.Add(to);
+            return result;
         }
     }
 }
