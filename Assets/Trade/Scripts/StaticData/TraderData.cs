@@ -5,10 +5,12 @@ namespace Trade.Scripts.StaticData
     [CreateAssetMenu(menuName = "StaticData/Trader", fileName = "Trader")]
     public class TraderData : ScriptableObject
     {
-        [SerializeField] private ItemData[] _initialItems;
+        [SerializeField] private int _initialCoins;
         [SerializeField] private float _sellCostMultiplier;
+        [SerializeField] private ItemData[] _initialItems;
 
-        public ItemData[] InitialItems => _initialItems;
+        public int InitialCoins => _initialCoins;
         public float SellCostMultiplier => _sellCostMultiplier;
+        public ItemData[] InitialItems => _initialItems;
     }
 }

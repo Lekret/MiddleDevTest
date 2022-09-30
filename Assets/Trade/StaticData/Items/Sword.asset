@@ -15,4 +15,4 @@ MonoBehaviour:
   _id: sword
   _name: Sword
   _cost: 50
-  _sprite: {fileID: 21300000, guid: aa7755cbbf5073c47b6e646111e60664, type: 3}
+  _sprite: {fileID: 21300000, guid: 3645c8b83ad387f4ea610954f91e9c4f, type: 3}

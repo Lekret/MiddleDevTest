@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5376a81fd36843159808e10843c8adfe, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  _initialItems: []
+  _initialCoins: 100
+  _initialItems:
+  - {fileID: 11400000, guid: 1804ba7d07864984386504c5d8708e26, type: 2}
+  - {fileID: 11400000, guid: 1804ba7d07864984386504c5d8708e26, type: 2}
+  - {fileID: 11400000, guid: 1804ba7d07864984386504c5d8708e26, type: 2}
+  - {fileID: 11400000, guid: 1804ba7d07864984386504c5d8708e26, type: 2}
+  - {fileID: 11400000, guid: 1804ba7d07864984386504c5d8708e26, type: 2}
+  - {fileID: 11400000, guid: aaa3d3ff658398b4ba090626b680ebfa, type: 2}

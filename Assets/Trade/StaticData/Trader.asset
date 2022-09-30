@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e5b95167154180bddb65c1abfd94cc, type: 3}
   m_Name: Trader
   m_EditorClassIdentifier: 
-  _initialItems: []
-  _sellCostMultiplier: 0
+  _initialCoins: 999
+  _sellCostMultiplier: 0.5
+  _initialItems:
+  - {fileID: 11400000, guid: aaa3d3ff658398b4ba090626b680ebfa, type: 2}
+  - {fileID: 11400000, guid: 1804ba7d07864984386504c5d8708e26, type: 2}
+  - {fileID: 11400000, guid: d13ccc54dc6f4844481bd3acd53b229f, type: 2}
+  - {fileID: 11400000, guid: d13ccc54dc6f4844481bd3acd53b229f, type: 2}

@@ -15,10 +15,10 @@ namespace Trade.Scripts.Infrastructure
 
         private void Awake()
         {
-            var player = new Player();
+            var player = new Player(new Wallet(PlayerData.InitialCoins), new ItemContainer(10));
             AddItems(player.Items, PlayerData.InitialItems);
             
-            var trader = new Trader();
+            var trader = new Trader(new Wallet(TraderData.InitialCoins), new ItemContainer(10));
             AddItems(trader.Items, TraderData.InitialItems);
             var uiFactory = new UiFactory(UiConfiguration);
             uiFactory.Init();

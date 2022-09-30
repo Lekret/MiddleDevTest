@@ -6,6 +6,11 @@ namespace Trade.Scripts.Logic
     {
         private int _coins;
 
+        public Wallet(int coins)
+        {
+            _coins = coins;
+        }
+
         public int Coins => _coins;
         public event Action CoinsCountChanged;
 
