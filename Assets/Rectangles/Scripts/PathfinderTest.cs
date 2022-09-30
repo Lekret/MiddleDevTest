@@ -32,13 +32,10 @@ namespace Rectangles.Scripts
 
         private void OnValidate()
         {
-            for (var i = 0; i < _edges.Length; i++)
+            for (var i = 0; i < _edges.Length - 1; i++)
             {
-                if (i < _edges.Length - 1)
-                {
-                    _edges[i + 1].First = _edges[i].Second;
-                    EditorUtility.SetDirty(this);
-                }
+                _edges[i + 1].First = _edges[i].Second;
+                EditorUtility.SetDirty(this);
             }
         }
 
