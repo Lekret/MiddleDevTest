@@ -1,16 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class IPathFinder : MonoBehaviour
+namespace Rectangles.Scripts
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface IPathFinder
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        IEnumerable<Vector2> GetPath(Vector2 a, Vector2 c, IEnumerable<Edge> edges);
     }
 }
