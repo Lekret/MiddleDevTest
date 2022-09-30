@@ -5,6 +5,6 @@ namespace Rectangles.Scripts
 {
     public interface IPathFinder
     {
-        IEnumerable<Vector2> GetPath(Vector2 a, Vector2 c, IEnumerable<Edge> edges);
+        IEnumerable<Vector2> GetPath(Vector2 from, Vector2 to, IEnumerable<Edge> edges);
     }
 }

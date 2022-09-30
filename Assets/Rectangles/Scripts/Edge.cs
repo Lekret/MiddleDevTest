@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Rectangles.Scripts
 {
+    [Serializable]
     public struct Edge
     {
         public Rectangle First;
