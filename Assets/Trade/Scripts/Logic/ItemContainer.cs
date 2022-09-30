@@ -8,6 +8,8 @@ namespace Trade.Scripts.Logic
         private readonly int _capacity;
         private readonly Dictionary<int, Item> _items = new Dictionary<int, Item>();
         public IReadOnlyCollection<Item> Items => _items.Values;
+        public int Capacity => _capacity;
+
         public event Action<Item> Added;
         public event Action<Item> Removed;
 

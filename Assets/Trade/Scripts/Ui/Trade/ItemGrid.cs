@@ -17,7 +17,7 @@ namespace Trade.Scripts.Ui.Trade
         {
             _items = items;
             _hoveringItemSlot = hoveringItemSlot;
-            ConfigureSize(items.Items);
+            ConfigureSize();
             InitSlots(items.Items);
             _items.Added += AddItem;
             _items.Removed += RemoveItem;
@@ -29,35 +29,44 @@ namespace Trade.Scripts.Ui.Trade
             _items.Removed -= RemoveItem;
         }
         
-        private void ConfigureSize(IReadOnlyCollection<Item> items)
+        private void ConfigureSize()
         {
-            if (items.Count == _slots.Count)
+            if (_items.Capacity == _slots.Count)
                 return;
             
-            if (items.Count > _slots.Count)
+            if (_items.Capacity > _slots.Count)
             {
-                AddNewSlots(items);
+                AddNewSlots();
             }
             else
             {
-                HideExcessiveSlots(items);
+                HideExcessiveSlots();
             }
         }
 
-        private void AddNewSlots(IReadOnlyCollection<Item> items)
+        private void AddNewSlots()
         {
-            var slotsToAdd = items.Count - _slots.Count;
+            var slotsToAdd = _items.Capacity - _slots.Count;
             for (var i = 0; i < slotsToAdd; i++)
             {
                 var newSlot = Instantiate(_slotPrefab, _slotContainer);
                 newSlot.SetEmpty();
-                newSlot.PointerDown += OnSlotPointerDown;
-                newSlot.PointerUp += OnSlotPointerUp;
+                newSlot.Dragged += OnSlotDragged;
+                newSlot.DragEnded += OnSlotDragEnded;
+                newSlot.Dropped += OnSlotDropped;
                 _slots.Add(newSlot);
             }
         }
+        
+        private void HideExcessiveSlots()
+        {
+            for (var i = _items.Capacity; i < _slots.Count; i++)
+            {
+                _slots[i].Disable();
+            }
+        }
 
-        private void OnSlotPointerDown(ItemSlot slot)
+        private void OnSlotDragged(ItemSlot slot)
         {
             if (slot.Item.HasValue)
             {
@@ -66,22 +75,27 @@ namespace Trade.Scripts.Ui.Trade
             }
         }
         
-        private void OnSlotPointerUp(ItemSlot slot)
+        private void OnSlotDragEnded(ItemSlot slot)
         {
             slot.ShowItem();
-            _hoveringItemSlot.Disable();
+            _hoveringItemSlot.Hide();
         }
-
-        private void HideExcessiveSlots(IReadOnlyCollection<Item> items)
+        
+        private void OnSlotDropped(ItemSlot slot)
         {
-            for (var i = items.Count; i < _slots.Count; i++)
+            if (_hoveringItemSlot.HasItem)
             {
-                _slots[i].Disable();
+                slot.SetItem(_hoveringItemSlot.Item);
+                _hoveringItemSlot.Hide();
             }
         }
 
         private void InitSlots(IEnumerable<Item> items)
         {
+            foreach (var slot in _slots)
+            {
+                slot.SetEmpty();
+            }
             foreach (var item in items)
             {
                 _slots[item.Index].SetItem(item);

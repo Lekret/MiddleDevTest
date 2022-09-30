@@ -14,5 +14,10 @@ namespace Trade.Scripts.Logic
             Index = 0;
             Cost = 0;
         }
+
+        public bool IsValid()
+        {
+            return Data != null;
+        }
     }
 }

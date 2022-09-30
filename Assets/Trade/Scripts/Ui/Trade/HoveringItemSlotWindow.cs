@@ -9,7 +9,9 @@ namespace Trade.Scripts.Ui.Trade
     {
         [SerializeField] private Image _icon;
 
-        private bool _active;
+        private bool _isActive;
+        public bool HasItem => Item.IsValid();
+        public Item Item { get; private set; }
 
         private void Awake()
         {
@@ -18,20 +20,22 @@ namespace Trade.Scripts.Ui.Trade
 
         public void SetItem(Item item)
         {
-            _active = true;
+            Item = item;
+            _isActive = true;
             gameObject.SetActive(true);
             _icon.sprite = item.Data.Sprite;
         }
 
-        public void Disable()
+        public void Hide()
         {
-            _active = false;
+            _isActive = false;
+            Item = default;
             gameObject.SetActive(false);
         }
 
-        private void Update()
+        private void LateUpdate()
         {
-            if (!_active)
+            if (!_isActive)
                 return;
             transform.position = Input.mousePosition;
         }

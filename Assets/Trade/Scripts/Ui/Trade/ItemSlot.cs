@@ -6,19 +6,20 @@ using UnityEngine.UI;
 
 namespace Trade.Scripts.Ui.Trade
 {
-    public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+    public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IDropHandler
     {
         [SerializeField] private Image _icon;
 
         public Item? Item { get; private set; }
-        public event Action<ItemSlot> PointerDown;
-        public event Action<ItemSlot> PointerUp;
+        public event Action<ItemSlot> Dragged;
+        public event Action<ItemSlot> Dropped;
+        public event Action<ItemSlot> DragEnded;
 
-        void IPointerDownHandler.OnPointerDown(PointerEventData eventData) =>
-            PointerDown?.Invoke(this);
+        void IDragHandler.OnDrag(PointerEventData eventData) => Dragged?.Invoke(this);
 
-        void IPointerUpHandler.OnPointerUp(PointerEventData eventData) =>
-            PointerUp?.Invoke(this);
+        void IEndDragHandler.OnEndDrag(PointerEventData eventData) => DragEnded?.Invoke(this);
+
+        void IDropHandler.OnDrop(PointerEventData eventData) => Dropped?.Invoke(this);
 
         public void SetItem(Item item)
         {
