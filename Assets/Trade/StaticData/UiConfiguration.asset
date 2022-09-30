@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: UiConfiguration
   m_EditorClassIdentifier: 
   _root: {fileID: 3494043784736831679, guid: 67668eed4166d744c9c68b06ea980ce4, type: 3}
-  _windows: []
+  _windows:
+  - {fileID: 8975473862957207197, guid: 9b9f0046cafeadc4f9290b349b9203be, type: 3}
+  - {fileID: 5746793166079818541, guid: 19aa2a2acbf094b49b8a935e99b6f5e3, type: 3}

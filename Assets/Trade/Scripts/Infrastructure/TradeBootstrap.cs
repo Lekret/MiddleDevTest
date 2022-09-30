@@ -22,8 +22,8 @@ namespace Trade.Scripts.Infrastructure
             AddItems(trader.Items, TraderData.InitialItems);
             var uiFactory = new UiFactory(UiConfiguration);
             uiFactory.Init();
-            uiFactory.Create<CoinsWindow>();
-            uiFactory.Create<TradeWindow>();
+            uiFactory.Create<CoinsWindow>().Init(player.Wallet);
+            uiFactory.Create<TradeWindow>().Init(player.Items, trader.Items);
         }
 
         private static void AddItems(ItemContainer items, IEnumerable<ItemData> itemData)

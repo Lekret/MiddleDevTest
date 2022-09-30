@@ -15,7 +15,7 @@ namespace Trade.Scripts.Ui
         public void Init(ItemContainer items)
         {
             _items = items;
-            TryAddSlots(items.Items);
+            ConfigureSize(items.Items);
             InitSlots(items.Items);
             _items.Added += AddItem;
             _items.Removed += RemoveItem;
@@ -27,15 +27,37 @@ namespace Trade.Scripts.Ui
             _items.Removed -= RemoveItem;
         }
         
-        private void TryAddSlots(IReadOnlyCollection<Item> items)
+        private void ConfigureSize(IReadOnlyCollection<Item> items)
+        {
+            if (items.Count == _slots.Count)
+                return;
+            
+            if (items.Count > _slots.Count)
+            {
+                AddNewSlots(items);
+            }
+            else
+            {
+                HideExcessiveSlots(items);
+            }
+        }
+
+        private void AddNewSlots(IReadOnlyCollection<Item> items)
         {
             var slotsToAdd = items.Count - _slots.Count;
-            while (slotsToAdd > 0)
+            for (var i = 0; i < slotsToAdd; i++)
             {
                 var newSlot = Instantiate(_slotPrefab, _slotContainer);
                 newSlot.Clear();
                 _slots.Add(newSlot);
-                slotsToAdd--;
+            }
+        }
+        
+        private void HideExcessiveSlots(IReadOnlyCollection<Item> items)
+        {
+            for (var i = items.Count; i < _slots.Count; i++)
+            {
+                _slots[i].Hide();
             }
         }
 

@@ -1,26 +1,35 @@
-﻿using TMPro;
+﻿using System;
 using Trade.Scripts.Logic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Trade.Scripts.Ui
 {
-    public class ItemSlot : MonoBehaviour
+    public class ItemSlot : MonoBehaviour, IDragHandler
     {
+        [SerializeField] private GameObject _root;
         [SerializeField] private Image _icon;
-        [SerializeField] private TextMeshProUGUI _cost;
+
+        public event Action<PointerEventData> Dragged;
         
+        void IDragHandler.OnDrag(PointerEventData eventData) => Dragged?.Invoke(eventData);
+
         public void SetItem(Item item)
         {
+            _root.SetActive(true);
             _icon.enabled = true;
             _icon.sprite = item.Data.Sprite;
-            _cost.text = $"{item.Cost}";
         }
 
         public void Clear()
         {
             _icon.enabled = false;
-            _cost.text = "";
+        }
+
+        public void Hide()
+        {
+            _root.SetActive(false);
         }
     }
 }
