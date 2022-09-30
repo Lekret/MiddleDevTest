@@ -10,14 +10,22 @@ namespace Trade.Scripts.Ui.Trade
     {
         [SerializeField] private Image _icon;
 
-        public Item? Item { get; private set; }
+        public Item Item { get; private set; }
         public event Action<ItemSlot> Dragged;
         public event Action<ItemSlot> Dropped;
         public event Action<ItemSlot> DragEnded;
 
-        void IDragHandler.OnDrag(PointerEventData eventData) => Dragged?.Invoke(this);
+        void IDragHandler.OnDrag(PointerEventData eventData)
+        {
+            if (Item.IsValid())
+                Dragged?.Invoke(this);
+        }
 
-        void IEndDragHandler.OnEndDrag(PointerEventData eventData) => DragEnded?.Invoke(this);
+        void IEndDragHandler.OnEndDrag(PointerEventData eventData)
+        {
+            if (Item.IsValid())
+                DragEnded?.Invoke(this);
+        }
 
         void IDropHandler.OnDrop(PointerEventData eventData) => Dropped?.Invoke(this);
 
@@ -31,7 +39,7 @@ namespace Trade.Scripts.Ui.Trade
 
         public void SetEmpty()
         {
-            Item = null;
+            Item = default;
             gameObject.SetActive(true);
             _icon.enabled = false;
         }
@@ -48,7 +56,7 @@ namespace Trade.Scripts.Ui.Trade
         
         public void Disable()
         {
-            Item = null;
+            Item = default;
             gameObject.SetActive(false);
         }
     }

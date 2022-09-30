@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Trade.Scripts.Logic;
+using Trade.Scripts.Ui.Handlers;
 using UnityEngine;
 
 namespace Trade.Scripts.Ui.Trade
@@ -11,12 +12,17 @@ namespace Trade.Scripts.Ui.Trade
 
         private ItemContainer _items;
         private IHoveringItemSlot _hoveringItemSlot;
+        private IItemTransferHandler _itemTransferHandler;
         private readonly List<ItemSlot> _slots = new List<ItemSlot>();
 
-        public void Init(ItemContainer items, IHoveringItemSlot hoveringItemSlot)
+        public void Init(
+            ItemContainer items,
+            IHoveringItemSlot hoveringItemSlot, 
+            IItemTransferHandler itemTransferHandler)
         {
             _items = items;
             _hoveringItemSlot = hoveringItemSlot;
+            _itemTransferHandler = itemTransferHandler;
             ConfigureSize();
             InitSlots(items.Items);
             _items.Added += AddItem;
@@ -68,26 +74,21 @@ namespace Trade.Scripts.Ui.Trade
 
         private void OnSlotDragged(ItemSlot slot)
         {
-            if (slot.Item.HasValue)
-            {
-                _hoveringItemSlot.SetItem(slot.Item.Value);
-                slot.HideItem();
-            }
+            _itemTransferHandler.SetSource(slot);
+            _hoveringItemSlot.SetItem(slot.Item);
         }
         
         private void OnSlotDragEnded(ItemSlot slot)
         {
             slot.ShowItem();
             _hoveringItemSlot.Hide();
+            _itemTransferHandler.Clear();
         }
         
         private void OnSlotDropped(ItemSlot slot)
         {
-            if (_hoveringItemSlot.HasItem)
-            {
-                slot.SetItem(_hoveringItemSlot.Item);
-                _hoveringItemSlot.Hide();
-            }
+            _hoveringItemSlot.Hide();
+            _itemTransferHandler.TransferTo(slot);
         }
 
         private void InitSlots(IEnumerable<Item> items)

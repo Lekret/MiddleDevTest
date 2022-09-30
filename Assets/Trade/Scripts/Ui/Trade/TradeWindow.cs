@@ -1,5 +1,6 @@
 ﻿using Trade.Scripts.Logic;
 using Trade.Scripts.Ui.Core;
+using Trade.Scripts.Ui.Handlers;
 using UnityEngine;
 
 namespace Trade.Scripts.Ui.Trade
@@ -9,10 +10,14 @@ namespace Trade.Scripts.Ui.Trade
         [SerializeField] private ItemGrid _playerGrid;
         [SerializeField] private ItemGrid _traderGrid;
         
-        public void Init(ItemContainer player, ItemContainer trader, IHoveringItemSlot hoveringItemSlot)
+        public void Init(
+            ItemContainer player, 
+            ItemContainer trader,
+            IHoveringItemSlot hoveringItemSlot,
+            IItemTransferHandler itemTransferHandler)
         {
-            _playerGrid.Init(player, hoveringItemSlot);
-            _traderGrid.Init(trader, hoveringItemSlot);
+            _playerGrid.Init(player, hoveringItemSlot, itemTransferHandler);
+            _traderGrid.Init(trader, hoveringItemSlot, itemTransferHandler);
         }
     }
 }

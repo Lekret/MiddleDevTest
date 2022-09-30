@@ -3,6 +3,7 @@ using Trade.Scripts.Logic;
 using Trade.Scripts.StaticData;
 using Trade.Scripts.Ui;
 using Trade.Scripts.Ui.Core;
+using Trade.Scripts.Ui.Handlers;
 using Trade.Scripts.Ui.Trade;
 using UnityEngine;
 
@@ -25,7 +26,8 @@ namespace Trade.Scripts.Infrastructure
             uiFactory.Init();
             var hoveringItem = uiFactory.Create<HoveringItemSlotWindow>();
             uiFactory.Create<CoinsWindow>().Init(player.Wallet);
-            uiFactory.Create<TradeWindow>().Init(player.Items, trader.Items, hoveringItem);
+            var itemTransferHandler = new ItemTransferHandler();
+            uiFactory.Create<TradeWindow>().Init(player.Items, trader.Items, hoveringItem, itemTransferHandler);
             hoveringItem.PlaceAsFirst();
         }
 
