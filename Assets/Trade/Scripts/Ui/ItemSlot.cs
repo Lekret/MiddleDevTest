@@ -22,8 +22,9 @@ namespace Trade.Scripts.Ui
             _icon.sprite = item.Data.Sprite;
         }
 
-        public void Clear()
+        public void SetEmpty()
         {
+            _root.SetActive(true);
             _icon.enabled = false;
         }
 

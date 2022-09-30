@@ -48,7 +48,7 @@ namespace Trade.Scripts.Ui
             for (var i = 0; i < slotsToAdd; i++)
             {
                 var newSlot = Instantiate(_slotPrefab, _slotContainer);
-                newSlot.Clear();
+                newSlot.SetEmpty();
                 _slots.Add(newSlot);
             }
         }
@@ -71,6 +71,6 @@ namespace Trade.Scripts.Ui
         
         private void AddItem(Item item) => _slots[item.Index].SetItem(item);
 
-        private void RemoveItem(Item item) => _slots[item.Index].Clear();
+        private void RemoveItem(Item item) => _slots[item.Index].SetEmpty();
     }
 }
