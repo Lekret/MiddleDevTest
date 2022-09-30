@@ -34,8 +34,13 @@ namespace Rectangles.Scripts
         {
             for (var i = 0; i < _edges.Length - 1; i++)
             {
-                _edges[i + 1].First = _edges[i].Second;
-                EditorUtility.SetDirty(this);
+                ref var current = ref _edges[i];
+                ref var next = ref _edges[i + 1];
+                if (!next.First.Equals(current.Second))
+                {
+                    next.First = current.Second;
+                    EditorUtility.SetDirty(this);
+                }
             }
         }
 
