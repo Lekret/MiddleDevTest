@@ -13,21 +13,13 @@ namespace Trade.Scripts.Ui.Trade
         public int Index { get; set; }
         public Item Item { get; private set; }
         public event Action<ItemSlot> Dragged;
-        public event Action<ItemSlot> Dropped;
         public event Action<ItemSlot> DragEnded;
+        public event Action<ItemSlot> Dropped;
         
-        void IDragHandler.OnDrag(PointerEventData eventData)
-        {
-            if (Item.IsValid())
-                Dragged?.Invoke(this);
-        }
+        void IDragHandler.OnDrag(PointerEventData eventData) => Dragged?.Invoke(this);
 
-        void IEndDragHandler.OnEndDrag(PointerEventData eventData)
-        {
-            if (Item.IsValid())
-                DragEnded?.Invoke(this);
-        }
-
+        void IEndDragHandler.OnEndDrag(PointerEventData eventData) => DragEnded?.Invoke(this);
+        
         void IDropHandler.OnDrop(PointerEventData eventData) => Dropped?.Invoke(this);
 
         public void SetItem(Item item)

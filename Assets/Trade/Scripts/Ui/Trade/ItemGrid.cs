@@ -75,6 +75,8 @@ namespace Trade.Scripts.Ui.Trade
 
         private void OnSlotDragged(ItemSlot slot)
         {
+            if (!slot.Item.IsValid())
+                return;
             _hoveringItemSlot.SetItem(slot.Item);
             _itemTransferHandler.SetSource(_items, slot.Item);
             slot.HideItem();
@@ -82,6 +84,8 @@ namespace Trade.Scripts.Ui.Trade
         
         private void OnSlotDragEnded(ItemSlot slot)
         {
+            if (!slot.Item.IsValid())
+                return;
             _hoveringItemSlot.Hide();
             _itemTransferHandler.Clear();
             slot.ShowItem();
