@@ -166,8 +166,8 @@ MonoBehaviour:
       Min: {x: 3, y: 0}
       Max: {x: 7, y: 2}
     Second:
-      Min: {x: 6, y: 2}
-      Max: {x: 9, y: 5}
+      Min: {x: 8, y: 5}
+      Max: {x: 12, y: 8}
     Start: {x: 6, y: 2}
     End: {x: 7, y: 2}
   - First:

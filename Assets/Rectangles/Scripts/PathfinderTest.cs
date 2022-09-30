@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 namespace Rectangles.Scripts
@@ -26,6 +27,18 @@ namespace Rectangles.Scripts
             {
                 DrawRectangle(edge.First);
                 DrawRectangle(edge.Second);
+            }
+        }
+
+        private void OnValidate()
+        {
+            for (var i = 0; i < _edges.Length; i++)
+            {
+                if (i < _edges.Length - 1)
+                {
+                    _edges[i + 1].First = _edges[i].Second;
+                    EditorUtility.SetDirty(this);
+                }
             }
         }
 
