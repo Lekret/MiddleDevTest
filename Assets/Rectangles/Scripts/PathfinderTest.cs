@@ -21,15 +21,6 @@ namespace Rectangles.Scripts
             _lineRenderer.SetPositions(positions);
         }
 
-        private void OnDrawGizmos()
-        {
-            foreach (var edge in _edges)
-            {
-                DrawRectangle(edge.First);
-                DrawRectangle(edge.Second);
-            }
-        }
-
         private void OnValidate()
         {
             for (var i = 0; i < _edges.Length - 1; i++)
@@ -41,6 +32,16 @@ namespace Rectangles.Scripts
                     next.First = current.Second;
                     EditorUtility.SetDirty(this);
                 }
+            }
+            CalcPath();
+        }
+        
+        private void OnDrawGizmos()
+        {
+            foreach (var edge in _edges)
+            {
+                DrawRectangle(edge.First);
+                DrawRectangle(edge.Second);
             }
         }
 
