@@ -2,7 +2,7 @@
 using Trade.Scripts.Logic;
 using UnityEngine;
 
-namespace Trade.Scripts.Ui
+namespace Trade.Scripts.Ui.Trade
 {
     public class ItemGrid : MonoBehaviour
     {
@@ -10,11 +10,13 @@ namespace Trade.Scripts.Ui
         [SerializeField] private Transform _slotContainer;
 
         private ItemContainer _items;
+        private IHoveringItemSlot _hoveringItemSlot;
         private readonly List<ItemSlot> _slots = new List<ItemSlot>();
 
-        public void Init(ItemContainer items)
+        public void Init(ItemContainer items, IHoveringItemSlot hoveringItemSlot)
         {
             _items = items;
+            _hoveringItemSlot = hoveringItemSlot;
             ConfigureSize(items.Items);
             InitSlots(items.Items);
             _items.Added += AddItem;
@@ -49,15 +51,32 @@ namespace Trade.Scripts.Ui
             {
                 var newSlot = Instantiate(_slotPrefab, _slotContainer);
                 newSlot.SetEmpty();
+                newSlot.PointerDown += OnSlotPointerDown;
+                newSlot.PointerUp += OnSlotPointerUp;
                 _slots.Add(newSlot);
             }
         }
+
+        private void OnSlotPointerDown(ItemSlot slot)
+        {
+            if (slot.Item.HasValue)
+            {
+                _hoveringItemSlot.SetItem(slot.Item.Value);
+                slot.HideItem();
+            }
+        }
         
+        private void OnSlotPointerUp(ItemSlot slot)
+        {
+            slot.ShowItem();
+            _hoveringItemSlot.Disable();
+        }
+
         private void HideExcessiveSlots(IReadOnlyCollection<Item> items)
         {
             for (var i = items.Count; i < _slots.Count; i++)
             {
-                _slots[i].Hide();
+                _slots[i].Disable();
             }
         }
 

@@ -3,6 +3,7 @@ using Trade.Scripts.Logic;
 using Trade.Scripts.StaticData;
 using Trade.Scripts.Ui;
 using Trade.Scripts.Ui.Core;
+using Trade.Scripts.Ui.Trade;
 using UnityEngine;
 
 namespace Trade.Scripts.Infrastructure
@@ -22,8 +23,10 @@ namespace Trade.Scripts.Infrastructure
             AddItems(trader.Items, TraderData.InitialItems);
             var uiFactory = new UiFactory(UiConfiguration);
             uiFactory.Init();
+            var hoveringItem = uiFactory.Create<HoveringItemSlotWindow>();
             uiFactory.Create<CoinsWindow>().Init(player.Wallet);
-            uiFactory.Create<TradeWindow>().Init(player.Items, trader.Items);
+            uiFactory.Create<TradeWindow>().Init(player.Items, trader.Items, hoveringItem);
+            hoveringItem.PlaceAsFirst();
         }
 
         private static void AddItems(ItemContainer items, IEnumerable<ItemData> itemData)

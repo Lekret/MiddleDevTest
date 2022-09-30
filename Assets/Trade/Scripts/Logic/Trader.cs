@@ -7,7 +7,7 @@
 
         public Trader(Wallet wallet, ItemContainer items)
         {
-            wallet = wallet;
+            Wallet = wallet;
             Items = items;
         }
     }
