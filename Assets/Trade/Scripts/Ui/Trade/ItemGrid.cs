@@ -77,13 +77,14 @@ namespace Trade.Scripts.Ui.Trade
         {
             _hoveringItemSlot.SetItem(slot.Item);
             _itemTransferHandler.SetSource(_items, slot);
+            slot.HideItem();
         }
         
         private void OnSlotDragEnded(ItemSlot slot)
         {
-            slot.ShowItem();
             _hoveringItemSlot.Hide();
             _itemTransferHandler.Clear();
+            slot.ShowItem();
         }
         
         private void OnSlotDropped(ItemSlot slot)

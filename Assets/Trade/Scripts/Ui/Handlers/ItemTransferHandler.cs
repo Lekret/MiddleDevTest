@@ -12,7 +12,6 @@ namespace Trade.Scripts.Ui.Handlers
         {
             _sourceSlot = sourceSlot;
             _sourceItems = sourceItems;
-            sourceSlot.HideItem();
         }
 
         public void TransferTo(ItemContainer targetItems, ItemSlot targetSlot)
@@ -31,11 +30,11 @@ namespace Trade.Scripts.Ui.Handlers
             {
                 _sourceItems.RemoveAt(_sourceSlot.Item.Index);
             }
-            _sourceSlot = null;
         }
 
         public void Clear()
-        {
+        {            
+            _sourceSlot.ShowItem();
             _sourceSlot = null;
         }
     }
