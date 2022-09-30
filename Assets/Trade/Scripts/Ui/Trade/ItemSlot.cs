@@ -10,11 +10,12 @@ namespace Trade.Scripts.Ui.Trade
     {
         [SerializeField] private Image _icon;
 
+        public int Index { get; set; }
         public Item Item { get; private set; }
         public event Action<ItemSlot> Dragged;
         public event Action<ItemSlot> Dropped;
         public event Action<ItemSlot> DragEnded;
-
+        
         void IDragHandler.OnDrag(PointerEventData eventData)
         {
             if (Item.IsValid())

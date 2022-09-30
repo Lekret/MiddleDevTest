@@ -27,10 +27,11 @@ namespace Trade.Scripts.Logic
             Added?.Invoke(item);
         }
 
-        public void AddAt(Item item, int index)
+        public void SetAt(Item item, int index)
         {
             item.Index = index;
-            _items.Add(index, item);
+            _items[index] = item;
+            Added?.Invoke(item);
         }
 
         public Item RemoveAt(int index)

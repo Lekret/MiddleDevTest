@@ -56,6 +56,7 @@ namespace Trade.Scripts.Ui.Trade
             for (var i = 0; i < slotsToAdd; i++)
             {
                 var newSlot = Instantiate(_slotPrefab, _slotContainer);
+                newSlot.Index = _slots.Count;
                 newSlot.SetEmpty();
                 newSlot.Dragged += OnSlotDragged;
                 newSlot.DragEnded += OnSlotDragEnded;
@@ -74,8 +75,8 @@ namespace Trade.Scripts.Ui.Trade
 
         private void OnSlotDragged(ItemSlot slot)
         {
-            _itemTransferHandler.SetSource(slot);
             _hoveringItemSlot.SetItem(slot.Item);
+            _itemTransferHandler.SetSource(_items, slot);
         }
         
         private void OnSlotDragEnded(ItemSlot slot)
@@ -88,7 +89,7 @@ namespace Trade.Scripts.Ui.Trade
         private void OnSlotDropped(ItemSlot slot)
         {
             _hoveringItemSlot.Hide();
-            _itemTransferHandler.TransferTo(slot);
+            _itemTransferHandler.TransferTo(_items, slot);
         }
 
         private void InitSlots(IEnumerable<Item> items)
