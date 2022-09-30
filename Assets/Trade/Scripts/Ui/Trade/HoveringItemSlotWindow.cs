@@ -9,7 +9,7 @@ namespace Trade.Scripts.Ui.Trade
     {
         [SerializeField] private Image _icon;
 
-        public Item Item { get; private set; }
+        private Item _item;
 
         private void Awake()
         {
@@ -18,20 +18,20 @@ namespace Trade.Scripts.Ui.Trade
 
         public void SetItem(Item item)
         {
-            Item = item;
+            _item = item;
             gameObject.SetActive(true);
             _icon.sprite = item.Data.Sprite;
         }
 
         public void Hide()
         {
-            Item = default;
+            _item = default;
             gameObject.SetActive(false);
         }
 
         private void LateUpdate()
         {
-            if (Item.IsValid())
+            if (_item.IsValid())
             {
                 transform.position = Input.mousePosition;
             }
