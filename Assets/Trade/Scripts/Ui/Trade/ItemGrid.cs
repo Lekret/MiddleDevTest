@@ -76,7 +76,7 @@ namespace Trade.Scripts.Ui.Trade
         private void OnSlotDragged(ItemSlot slot)
         {
             _hoveringItemSlot.SetItem(slot.Item);
-            _itemTransferHandler.SetSource(_items, slot);
+            _itemTransferHandler.SetSource(_items, slot.Item);
             slot.HideItem();
         }
         
@@ -90,7 +90,7 @@ namespace Trade.Scripts.Ui.Trade
         private void OnSlotDropped(ItemSlot slot)
         {
             _hoveringItemSlot.Hide();
-            _itemTransferHandler.TransferTo(_items, slot);
+            _itemTransferHandler.TransferTo(_items, slot.Item, slot.Index);
         }
 
         private void InitSlots(IEnumerable<Item> items)

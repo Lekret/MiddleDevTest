@@ -1,41 +1,40 @@
 ﻿using Trade.Scripts.Logic;
-using Trade.Scripts.Ui.Trade;
 
 namespace Trade.Scripts.Ui.Handlers
 {
     public class ItemTransferHandler : IItemTransferHandler
     {
-        private ItemSlot _sourceSlot;
+        private Item _sourceItem;
         private ItemContainer _sourceItems;
-        
-        public void SetSource(ItemContainer sourceItems, ItemSlot sourceSlot)
+
+        public void SetSource(ItemContainer sourceItems, Item sourceItem)
         {
-            _sourceSlot = sourceSlot;
             _sourceItems = sourceItems;
+            _sourceItem = sourceItem;
         }
 
-        public void TransferTo(ItemContainer targetItems, ItemSlot targetSlot)
+        public void TransferTo(ItemContainer targetItems, Item targetItem, int targetSlotIndex)
         {
-            if (_sourceSlot == null)
+            if (_sourceItems == null || !_sourceItem.IsValid())
                 return;
             
-            var targetItem = targetSlot.Item;
-            targetItems.SetAt(_sourceSlot.Item, targetSlot.Index);
+            targetItems.SetAt(_sourceItem, targetSlotIndex);
             
             if (targetItem.IsValid())
             {
-                _sourceItems.SetAt(targetItem, _sourceSlot.Item.Index);
+                _sourceItems.SetAt(targetItem, _sourceItem.Index);
             }
             else
             {
-                _sourceItems.RemoveAt(_sourceSlot.Item.Index);
+                _sourceItems.RemoveAt(_sourceItem.Index);
             }
+            Clear();
         }
 
         public void Clear()
-        {            
-            _sourceSlot.ShowItem();
-            _sourceSlot = null;
+        {
+            _sourceItem = default;
+            _sourceItems = null;
         }
     }
 }

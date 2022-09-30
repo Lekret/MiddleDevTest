@@ -1,12 +1,11 @@
 ﻿using Trade.Scripts.Logic;
-using Trade.Scripts.Ui.Trade;
 
 namespace Trade.Scripts.Ui.Handlers
 {
     public interface IItemTransferHandler
     {
-        void SetSource(ItemContainer sourceItems, ItemSlot sourceSlot);
-        void TransferTo(ItemContainer targetItems, ItemSlot targetSlot);
+        void SetSource(ItemContainer sourceItems, Item sourceItem);
+        void TransferTo(ItemContainer targetItems, Item targetItem, int targetSlotIndex);
         void Clear();
     }
 }
