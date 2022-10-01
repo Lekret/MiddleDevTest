@@ -6,7 +6,7 @@ namespace Trade.Scripts.Logic.Items
     public class ItemContainer
     {
         private readonly Dictionary<int, Item> _items = new Dictionary<int, Item>();
-        private int _capacity;
+        private readonly int _capacity;
 
         public ItemContainer(int capacity)
         {
@@ -14,17 +14,8 @@ namespace Trade.Scripts.Logic.Items
         }
         
         public IReadOnlyCollection<Item> Items => _items.Values;
-        public int Capacity
-        {
-            get => _capacity;
-            set
-            {
-                _capacity = value;
-                CapacityChanged?.Invoke();
-            }
-        }
-        
-        public event Action CapacityChanged;
+        public int Capacity => _capacity;
+
         public event Action<Item> Added;
         public event Action<Item> Removed;
 
