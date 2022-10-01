@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 9139220975562295523}
   - component: {fileID: 5746793166079818541}
   m_Layer: 0
-  m_Name: CoinsWindow
+  m_Name: CoinsView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

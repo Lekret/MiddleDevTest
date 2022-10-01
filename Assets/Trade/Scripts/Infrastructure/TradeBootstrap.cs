@@ -21,14 +21,34 @@ namespace Trade.Scripts.Infrastructure
             AddItems(player.Items, PlayerData.InitialItems);
             var trader = new Trader(new Wallet(TraderData.InitialCoins), new ItemContainer(10));
             AddItems(trader.Items, TraderData.InitialItems, TraderData.SellCostMultiplier);
-            
+
+            CreateUi(player, trader);
+        }
+
+        private void CreateUi(Player player, Trader trader)
+        {
             var uiFactory = new UiFactory(UiConfiguration);
             uiFactory.Init();
-            var draggableItemSlot = uiFactory.Create<DraggableItemSlotWindow>();
-            uiFactory.Create<CoinsWindow>().Init(player.Wallet);
+            var tradeWindow = new UiWindow();
+            var draggableItemSlot = uiFactory.Create<DraggableItemSlotView>();
+            var tradeView = uiFactory.Create<TradeView>();
+            var coinsView = uiFactory.Create<CoinsView>();
+            var itemInfoView = uiFactory.Create<ItemInfoView>();
             var itemTransferHandler = new ItemTransferHandler();
-            uiFactory.Create<TradeWindow>().Init(player.Items, trader.Items, draggableItemSlot, itemTransferHandler);
-            draggableItemSlot.PlaceAsFirst();
+            tradeWindow
+                .Add(tradeView)
+                .Add(coinsView)
+                .Add(itemInfoView)
+                .Add(draggableItemSlot);
+            
+            coinsView.Init(player.Wallet);
+            tradeView.Init(
+                player.Items,
+                trader.Items, 
+                draggableItemSlot, itemTransferHandler,
+                itemInfoView);
+            
+            tradeWindow.Show();
         }
 
         private static void AddItems(ItemContainer items, IEnumerable<ItemData> itemData, float costMultiplier = 1)

@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 9139220975562295523}
   - component: {fileID: 8975473862957207197}
   m_Layer: 0
-  m_Name: TradeWindow
+  m_Name: TradeView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

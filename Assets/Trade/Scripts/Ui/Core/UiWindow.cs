@@ -1,13 +1,32 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
 
 namespace Trade.Scripts.Ui.Core
 {
-    [DisallowMultipleComponent]
-    public class UiWindow : MonoBehaviour
+    public class UiWindow
     {
-        public void PlaceAsFirst()
+        private readonly HashSet<UiView> _views = new HashSet<UiView>();
+
+        public UiWindow Add(UiView view)
         {
-            transform.SetAsLastSibling();
+            _views.Add(view);
+            return this;
+        }
+        
+        public void Show()
+        {
+            foreach (var view in _views)
+            {
+                view.gameObject.SetActive(true);
+                view.transform.SetAsLastSibling();
+            }
+        }
+
+        public void Hide()
+        {
+            foreach (var view in _views)
+            {
+                view.gameObject.SetActive(false);
+            }
         }
     }
 }

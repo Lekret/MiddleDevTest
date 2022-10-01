@@ -5,19 +5,19 @@ using UnityEngine;
 
 namespace Trade.Scripts.Ui.Trade
 {
-    public class TradeWindow : UiWindow
+    public class TradeView : UiView
     {
         [SerializeField] private ItemGrid _playerGrid;
         [SerializeField] private ItemGrid _traderGrid;
         
-        public void Init(
-            ItemContainer player, 
+        public void Init(ItemContainer player,
             ItemContainer trader,
             IDraggableItemSlot draggableItemSlot,
-            IItemTransferHandler itemTransferHandler)
+            IItemTransferHandler itemTransferHandler, 
+            IItemInfo itemInfo)
         {
-            _playerGrid.Init(player, draggableItemSlot, itemTransferHandler);
-            _traderGrid.Init(trader, draggableItemSlot, itemTransferHandler);
+            _playerGrid.Init(player, draggableItemSlot, itemTransferHandler, itemInfo);
+            _traderGrid.Init(trader, draggableItemSlot, itemTransferHandler, itemInfo);
         }
     }
 }

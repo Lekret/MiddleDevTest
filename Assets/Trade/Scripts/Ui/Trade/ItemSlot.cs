@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 namespace Trade.Scripts.Ui.Trade
 {
-    public class ItemSlot : MonoBehaviour, IDragHandler, IEndDragHandler, IDropHandler
+    public class ItemSlot : MonoBehaviour, 
+        IDragHandler, IEndDragHandler, IDropHandler, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private Image _icon;
 
@@ -14,13 +15,19 @@ namespace Trade.Scripts.Ui.Trade
         public Item Item { get; private set; }
         public event Action<ItemSlot> Dragged;
         public event Action<ItemSlot> DragEnded;
-        public event Action<ItemSlot> Dropped;
+        public event Action<ItemSlot, PointerEventData> Dropped;
+        public event Action<ItemSlot, PointerEventData> PointerEntered;
+        public event Action<ItemSlot> PointerExited;
         
         void IDragHandler.OnDrag(PointerEventData eventData) => Dragged?.Invoke(this);
 
         void IEndDragHandler.OnEndDrag(PointerEventData eventData) => DragEnded?.Invoke(this);
         
-        void IDropHandler.OnDrop(PointerEventData eventData) => Dropped?.Invoke(this);
+        void IDropHandler.OnDrop(PointerEventData eventData) => Dropped?.Invoke(this, eventData);
+
+        void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData) => PointerEntered?.Invoke(this, eventData);
+
+        void IPointerExitHandler.OnPointerExit(PointerEventData eventData) => PointerExited?.Invoke(this);
 
         public void SetItem(Item item)
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Trade.Scripts.Ui
 {
-    public class CoinsWindow : UiWindow
+    public class CoinsView : UiView
     {
         [SerializeField] private TextMeshProUGUI _amount;
 

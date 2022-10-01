@@ -5,28 +5,29 @@ using UnityEngine.UI;
 
 namespace Trade.Scripts.Ui.Trade
 {
-    public class DraggableItemSlotWindow : UiWindow, IDraggableItemSlot
+    public class DraggableItemSlotView : UiView, IDraggableItemSlot
     {
+        [SerializeField] private GameObject _container;
         [SerializeField] private Image _icon;
 
         private Item _item;
 
         private void Awake()
         {
-            gameObject.SetActive(false);
+            _container.SetActive(false);
         }
 
         public void SetItem(Item item)
         {
             _item = item;
-            gameObject.SetActive(true);
+            _container.SetActive(true);
             _icon.sprite = item.Data.Sprite;
         }
 
         public void Hide()
         {
             _item = default;
-            gameObject.SetActive(false);
+            _container.SetActive(false);
         }
 
         private void LateUpdate()

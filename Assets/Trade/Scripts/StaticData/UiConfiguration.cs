@@ -7,9 +7,9 @@ namespace Trade.Scripts.StaticData
     public class UiConfiguration : ScriptableObject
     {
         [SerializeField] private GameObject _root;
-        [SerializeField] private UiWindow[] _windows;
+        [SerializeField] private UiView[] _views;
 
         public GameObject Root => _root;
-        public UiWindow[] Windows => _windows;
+        public UiView[] Views => _views;
     }
 }

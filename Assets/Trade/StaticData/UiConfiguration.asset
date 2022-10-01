@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: UiConfiguration
   m_EditorClassIdentifier: 
   _root: {fileID: 3494043784736831679, guid: 67668eed4166d744c9c68b06ea980ce4, type: 3}
-  _windows:
+  _views:
+  - {fileID: 1021348619160948354, guid: 9482650e4f60ede4581852837e8a0782, type: 3}
+  - {fileID: 4894419275787310622, guid: 14339bf7f8cc30842a2ba461641a4a1b, type: 3}
   - {fileID: 8975473862957207197, guid: 9b9f0046cafeadc4f9290b349b9203be, type: 3}
   - {fileID: 5746793166079818541, guid: 19aa2a2acbf094b49b8a935e99b6f5e3, type: 3}
-  - {fileID: 1021348619160948354, guid: 9482650e4f60ede4581852837e8a0782, type: 3}
