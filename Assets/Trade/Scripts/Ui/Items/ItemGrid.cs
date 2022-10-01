@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Trade.Scripts.Logic.Items;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Trade.Scripts.Ui.Items
 {
@@ -11,9 +10,7 @@ namespace Trade.Scripts.Ui.Items
         [SerializeField] private Transform _slotContainer;
 
         private ItemContainer _items;
-        private IDraggableItemSlot _draggableItemSlot;
-        private IItemTransferHandler _itemTransferHandler;
-        private IItemInfo _itemInfo;
+        private ItemSlotHandler _itemSlotHandler;
         private readonly List<ItemSlot> _slots = new List<ItemSlot>();
 
         public void Init(ItemContainer items,
@@ -22,9 +19,11 @@ namespace Trade.Scripts.Ui.Items
             IItemInfo itemInfo)
         {
             _items = items;
-            _draggableItemSlot = draggableItemSlot;
-            _itemTransferHandler = itemTransferHandler;
-            _itemInfo = itemInfo;
+            _itemSlotHandler = new ItemSlotHandler(
+                items, 
+                draggableItemSlot, 
+                itemTransferHandler, 
+                itemInfo);
             ConfigureSize();
             InitSlots(items.Items);
             _items.Added += AddItem;
@@ -60,12 +59,12 @@ namespace Trade.Scripts.Ui.Items
                 var newSlot = Instantiate(_slotPrefab, _slotContainer);
                 newSlot.Index = _slots.Count;
                 newSlot.SetEmpty();
-                newSlot.DragBegan += OnSlotDragBegan;
-                newSlot.Dragged += OnSlotDragged;
-                newSlot.DragEnded += OnSlotDragEnded;
-                newSlot.Dropped += OnSlotDropped;
-                newSlot.PointerEntered += OnSlotPointerEntered;
-                newSlot.PointerExited += OnSlotPointerExited;
+                newSlot.DragBegan += _itemSlotHandler.OnSlotDragBegan;
+                newSlot.Dragged += _itemSlotHandler.OnSlotDragged;
+                newSlot.DragEnded += _itemSlotHandler.OnSlotDragEnded;
+                newSlot.Dropped += _itemSlotHandler.OnSlotDropped;
+                newSlot.PointerEntered += _itemSlotHandler.OnSlotPointerEntered;
+                newSlot.PointerExited += _itemSlotHandler.OnSlotPointerExited;
                 _slots.Add(newSlot);
             }
         }
@@ -88,57 +87,6 @@ namespace Trade.Scripts.Ui.Items
             {
                 _slots[item.Index].SetItem(item);
             }
-        }
-
-        private void OnSlotDragBegan(ItemSlot slot, PointerEventData eventData)
-        {
-            if (!slot.Item.IsValid())
-                return;
-            _draggableItemSlot.SetItem(slot.Item);
-            _draggableItemSlot.SetPosition(eventData.position);
-            _itemTransferHandler.SetSource(_items, slot.Item);
-            _itemInfo.Disable();
-            slot.HideItem();
-        }
-        
-        private void OnSlotDragged(ItemSlot slot, PointerEventData eventData)
-        {
-            if (!slot.Item.IsValid())
-                return;
-            _draggableItemSlot.SetPosition(eventData.position);
-        }
-
-        private void OnSlotDragEnded(ItemSlot slot)
-        {
-            if (!slot.Item.IsValid())
-                return;
-            _draggableItemSlot.Hide();
-            _itemTransferHandler.Clear();
-            slot.ShowItem();
-        }
-        
-        private void OnSlotDropped(ItemSlot slot)
-        {
-            _itemTransferHandler.TransferTo(_items, slot.Item, slot.Index);
-            _draggableItemSlot.Hide();
-            if (slot.Item.IsValid())
-            {
-                _itemInfo.Show(slot.Item, slot.transform.position);
-            }
-        }
-
-        private void OnSlotPointerEntered(ItemSlot slot)
-        {
-            if (!slot.Item.IsValid())
-                return;
-            if (_draggableItemSlot.IsDragging)
-                return;
-            _itemInfo.Show(slot.Item, slot.transform.position);
-        }
-        
-        private void OnSlotPointerExited(ItemSlot slot)
-        {
-            _itemInfo.Disable();
         }
 
         private void AddItem(Item item) => _slots[item.Index].SetItem(item);
