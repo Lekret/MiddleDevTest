@@ -6,5 +6,6 @@ namespace Trade.Scripts.Ui.Trade
     {
         void SetItem(Item item);
         void Hide();
+        bool IsDragging { get; }
     }
 }

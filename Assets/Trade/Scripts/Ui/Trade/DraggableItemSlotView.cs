@@ -12,6 +12,8 @@ namespace Trade.Scripts.Ui.Trade
 
         private Item _item;
 
+        public bool IsDragging => _item.IsValid();
+
         private void Awake()
         {
             _container.SetActive(false);
@@ -29,7 +31,7 @@ namespace Trade.Scripts.Ui.Trade
             _item = default;
             _container.SetActive(false);
         }
-
+        
         private void LateUpdate()
         {
             if (_item.IsValid())

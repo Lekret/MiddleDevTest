@@ -96,6 +96,7 @@ namespace Trade.Scripts.Ui.Trade
                 return;
             _draggableItemSlot.SetItem(slot.Item);
             _itemTransferHandler.SetSource(_items, slot.Item);
+            _itemInfo.Disable();
             slot.HideItem();
         }
         
@@ -105,7 +106,6 @@ namespace Trade.Scripts.Ui.Trade
                 return;
             _draggableItemSlot.Hide();
             _itemTransferHandler.Clear();
-            _itemInfo.Disable();
             slot.ShowItem();
         }
         
@@ -119,6 +119,8 @@ namespace Trade.Scripts.Ui.Trade
         private void OnSlotPointerEntered(ItemSlot slot, PointerEventData eventData)
         {
             if (!slot.Item.IsValid())
+                return;
+            if (_draggableItemSlot.IsDragging)
                 return;
             _itemInfo.Show(slot.Item, eventData.position);
         }
