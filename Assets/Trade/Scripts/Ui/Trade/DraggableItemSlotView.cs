@@ -26,18 +26,15 @@ namespace Trade.Scripts.Ui.Trade
             _icon.sprite = item.Data.Sprite;
         }
 
+        public void SetPosition(Vector3 position)
+        {
+            transform.position = position;
+        }
+
         public void Hide()
         {
             _item = default;
             _container.SetActive(false);
-        }
-        
-        private void LateUpdate()
-        {
-            if (_item.IsValid())
-            {
-                transform.position = Input.mousePosition;
-            }
         }
     }
 }

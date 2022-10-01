@@ -1,11 +1,13 @@
 ﻿using Trade.Scripts.Logic;
+using UnityEngine;
 
 namespace Trade.Scripts.Ui.Trade
 {
     public interface IDraggableItemSlot
     {
-        void SetItem(Item item);
-        void Hide();
         bool IsDragging { get; }
+        void SetItem(Item item);
+        void SetPosition(Vector3 position);
+        void Hide();
     }
 }

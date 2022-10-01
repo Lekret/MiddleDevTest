@@ -61,6 +61,7 @@ namespace Trade.Scripts.Ui.Trade
                 var newSlot = Instantiate(_slotPrefab, _slotContainer);
                 newSlot.Index = _slots.Count;
                 newSlot.SetEmpty();
+                newSlot.DragBegan += OnSlotDragBegan;
                 newSlot.Dragged += OnSlotDragged;
                 newSlot.DragEnded += OnSlotDragEnded;
                 newSlot.Dropped += OnSlotDropped;
@@ -90,16 +91,24 @@ namespace Trade.Scripts.Ui.Trade
             }
         }
 
-        private void OnSlotDragged(ItemSlot slot)
+        private void OnSlotDragBegan(ItemSlot slot, PointerEventData eventData)
         {
             if (!slot.Item.IsValid())
                 return;
             _draggableItemSlot.SetItem(slot.Item);
+            _draggableItemSlot.SetPosition(eventData.position);
             _itemTransferHandler.SetSource(_items, slot.Item);
             _itemInfo.Disable();
             slot.HideItem();
         }
         
+        private void OnSlotDragged(ItemSlot slot, PointerEventData eventData)
+        {
+            if (!slot.Item.IsValid())
+                return;
+            _draggableItemSlot.SetPosition(eventData.position);
+        }
+
         private void OnSlotDragEnded(ItemSlot slot)
         {
             if (!slot.Item.IsValid())
@@ -109,20 +118,23 @@ namespace Trade.Scripts.Ui.Trade
             slot.ShowItem();
         }
         
-        private void OnSlotDropped(ItemSlot slot, PointerEventData eventData)
+        private void OnSlotDropped(ItemSlot slot)
         {
-            _draggableItemSlot.Hide();
             _itemTransferHandler.TransferTo(_items, slot.Item, slot.Index);
-            _itemInfo.Show(slot.Item, eventData.position);
+            _draggableItemSlot.Hide();
+            if (slot.Item.IsValid())
+            {
+                _itemInfo.Show(slot.Item, slot.transform.position);
+            }
         }
 
-        private void OnSlotPointerEntered(ItemSlot slot, PointerEventData eventData)
+        private void OnSlotPointerEntered(ItemSlot slot)
         {
             if (!slot.Item.IsValid())
                 return;
             if (_draggableItemSlot.IsDragging)
                 return;
-            _itemInfo.Show(slot.Item, eventData.position);
+            _itemInfo.Show(slot.Item, slot.transform.position);
         }
         
         private void OnSlotPointerExited(ItemSlot slot)
