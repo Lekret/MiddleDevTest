@@ -3,7 +3,7 @@ using Trade.Scripts.Ui.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Trade.Scripts.Ui.Trade
+namespace Trade.Scripts.Ui.Items
 {
     public class DraggableItemSlotView : UiView, IDraggableItemSlot
     {

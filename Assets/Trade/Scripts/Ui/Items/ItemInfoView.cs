@@ -3,7 +3,7 @@ using Trade.Scripts.Logic;
 using Trade.Scripts.Ui.Core;
 using UnityEngine;
 
-namespace Trade.Scripts.Ui.Trade
+namespace Trade.Scripts.Ui.Items
 {
     public class ItemInfoView : UiView, IItemInfo
     {

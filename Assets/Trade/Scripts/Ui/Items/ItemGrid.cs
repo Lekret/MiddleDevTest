@@ -4,7 +4,7 @@ using Trade.Scripts.Ui.Handlers;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Trade.Scripts.Ui.Trade
+namespace Trade.Scripts.Ui.Items
 {
     public class ItemGrid : MonoBehaviour
     {

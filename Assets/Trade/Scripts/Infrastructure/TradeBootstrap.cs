@@ -4,6 +4,7 @@ using Trade.Scripts.StaticData;
 using Trade.Scripts.Ui;
 using Trade.Scripts.Ui.Core;
 using Trade.Scripts.Ui.Handlers;
+using Trade.Scripts.Ui.Items;
 using Trade.Scripts.Ui.Trade;
 using UnityEngine;
 

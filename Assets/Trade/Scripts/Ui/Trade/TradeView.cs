@@ -1,6 +1,7 @@
 ﻿using Trade.Scripts.Logic;
 using Trade.Scripts.Ui.Core;
 using Trade.Scripts.Ui.Handlers;
+using Trade.Scripts.Ui.Items;
 using UnityEngine;
 
 namespace Trade.Scripts.Ui.Trade

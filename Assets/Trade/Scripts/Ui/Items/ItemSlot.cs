@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Trade.Scripts.Ui.Trade
+namespace Trade.Scripts.Ui.Items
 {
     public class ItemSlot : MonoBehaviour, 
         IBeginDragHandler, IDragHandler, IEndDragHandler,
