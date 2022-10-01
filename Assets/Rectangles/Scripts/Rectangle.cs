@@ -17,7 +17,7 @@ namespace Rectangles.Scripts
             return rectangle.Max.x > rectangle.Min.x &&
                    rectangle.Max.y > rectangle.Min.y;
         }
-        
+
         public static bool Contains(this Rectangle rectangle, Vector2 point)
         {
             if (!rectangle.IsValid())

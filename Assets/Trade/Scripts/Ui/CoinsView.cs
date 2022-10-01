@@ -10,7 +10,7 @@ namespace Trade.Scripts.Ui
         [SerializeField] private TextMeshProUGUI _amount;
 
         private Wallet _wallet;
-        
+
         public void Init(Wallet wallet)
         {
             _wallet = wallet;

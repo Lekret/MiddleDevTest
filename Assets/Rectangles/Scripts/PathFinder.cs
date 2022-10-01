@@ -14,7 +14,7 @@ namespace Rectangles.Scripts
 
             if (!edges.LastOrDefault().Second.Contains(target))
                 return Array.Empty<Vector2>();
-            
+
             var result = new List<Vector2>();
             result.Add(source);
             foreach (var edge in edges)
@@ -22,7 +22,7 @@ namespace Rectangles.Scripts
                 var edgeMid = (edge.Start + edge.End) / 2f;
                 result.Add(edgeMid);
             }
-            
+
             result.Add(target);
             return result;
         }

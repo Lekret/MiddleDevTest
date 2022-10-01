@@ -17,8 +17,8 @@ namespace Trade.Scripts.Logic.Items
 
         public void TransferTo(
             ItemContainer targetItems,
-            Item targetItem, 
-            int targetSlotIndex, 
+            Item targetItem,
+            int targetSlotIndex,
             IItemTransferStrategy targetStrategy)
         {
             if (_sourceItems == null || _sourceStrategy == null || !_sourceItem.IsValid())
@@ -33,9 +33,10 @@ namespace Trade.Scripts.Logic.Items
             {
                 TransferByStrategies(targetItems, targetItem, targetSlotIndex, targetStrategy);
             }
+
             Clear();
         }
-        
+
         private void TransferInsideSource(Item targetItem, int targetSlotIndex)
         {
             _sourceItems.SetAt(_sourceItem, targetSlotIndex);
@@ -51,9 +52,9 @@ namespace Trade.Scripts.Logic.Items
         }
 
         private void TransferByStrategies(
-            ItemContainer targetItems, 
+            ItemContainer targetItems,
             Item targetItem,
-            int targetSlotIndex, 
+            int targetSlotIndex,
             IItemTransferStrategy targetStrategy)
         {
             if (!targetStrategy.CanTransfer(_sourceItem))
@@ -62,10 +63,10 @@ namespace Trade.Scripts.Logic.Items
             var needSwap = targetItem.IsValid();
             if (needSwap && !_sourceStrategy.CanTransfer(targetItem))
                 return;
-            
+
             targetStrategy.BeforeTransfer(ref _sourceItem);
             targetItems.SetAt(_sourceItem, targetSlotIndex);
-            
+
             if (needSwap)
             {
                 _sourceStrategy.BeforeTransfer(ref targetItem);

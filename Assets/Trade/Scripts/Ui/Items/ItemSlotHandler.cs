@@ -14,7 +14,7 @@ namespace Trade.Scripts.Ui.Items
 
         public ItemSlotHandler(
             ItemContainer items,
-            IDraggableItemSlot draggableItemSlot, 
+            IDraggableItemSlot draggableItemSlot,
             IItemTransferHandler itemTransferHandler,
             IItemTransferStrategy itemTransferStrategy,
             IItemInfo itemInfo)
@@ -36,7 +36,7 @@ namespace Trade.Scripts.Ui.Items
             _itemInfo.Disable();
             slot.HideItem();
         }
-        
+
         public void OnSlotDragged(ItemSlot slot, PointerEventData eventData)
         {
             if (!slot.Item.IsValid())
@@ -52,7 +52,7 @@ namespace Trade.Scripts.Ui.Items
             _itemTransferHandler.Clear();
             slot.ShowItem();
         }
-        
+
         public void OnSlotDropped(ItemSlot slot)
         {
             _itemTransferHandler.TransferTo(_items, slot.Item, slot.Index, _itemTransferStrategy);
@@ -71,7 +71,7 @@ namespace Trade.Scripts.Ui.Items
                 return;
             _itemInfo.Show(slot.Item, slot.transform.position);
         }
-        
+
         public void OnSlotPointerExited(ItemSlot slot)
         {
             _itemInfo.Disable();

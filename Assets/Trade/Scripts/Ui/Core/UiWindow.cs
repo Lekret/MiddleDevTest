@@ -11,7 +11,7 @@ namespace Trade.Scripts.Ui.Core
             _views.Add(view);
             return this;
         }
-        
+
         public void Show()
         {
             foreach (var view in _views)

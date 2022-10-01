@@ -23,9 +23,9 @@ namespace Trade.Scripts.Ui.Items
         {
             _items = items;
             _itemSlotHandler = new ItemSlotHandler(
-                items, 
-                draggableItemSlot, 
-                itemTransferHandler, 
+                items,
+                draggableItemSlot,
+                itemTransferHandler,
                 itemTransferStrategy,
                 itemInfo);
             ConfigureSize();
@@ -39,12 +39,12 @@ namespace Trade.Scripts.Ui.Items
             _items.Added -= AddItem;
             _items.Removed -= RemoveItem;
         }
-        
+
         private void ConfigureSize()
         {
             if (_items.Capacity == _slots.Count)
                 return;
-            
+
             if (_items.Capacity > _slots.Count)
             {
                 AddNewSlots();
@@ -80,13 +80,14 @@ namespace Trade.Scripts.Ui.Items
                 _slots[i].Disable();
             }
         }
-        
+
         private void InitSlots(IEnumerable<Item> items)
         {
             foreach (var slot in _slots)
             {
                 slot.SetEmpty();
             }
+
             foreach (var item in items)
             {
                 _slots[item.Index].SetItem(item);

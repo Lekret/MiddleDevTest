@@ -33,9 +33,10 @@ namespace Rectangles.Scripts
                     EditorUtility.SetDirty(this);
                 }
             }
+
             CalcPath();
         }
-        
+
         private void OnDrawGizmos()
         {
             foreach (var edge in _edges)

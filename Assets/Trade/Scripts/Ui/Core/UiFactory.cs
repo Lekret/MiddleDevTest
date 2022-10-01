@@ -20,7 +20,7 @@ namespace Trade.Scripts.Ui.Core
                 _prefabs.Add(prefab.GetType(), prefab);
             }
         }
-        
+
         public void Init()
         {
             _root = Object.Instantiate(_rootPrefab).transform;
@@ -32,6 +32,7 @@ namespace Trade.Scripts.Ui.Core
             {
                 return (T) Object.Instantiate(prefab, _root);
             }
+
             throw new Exception($"View of type {typeof(T)} not found");
         }
     }

@@ -10,7 +10,7 @@ namespace Trade.Scripts.Ui.Trade
     {
         [SerializeField] private ItemGrid _playerGrid;
         [SerializeField] private ItemGrid _traderGrid;
-        
+
         public void Init(
             ItemContainer player,
             ItemContainer trader,

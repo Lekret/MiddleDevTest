@@ -12,7 +12,7 @@ namespace Trade.Scripts.Logic.Items
         {
             _capacity = capacity;
         }
-        
+
         public IReadOnlyCollection<Item> Items => _items.Values;
         public int Capacity => _capacity;
         public event Action<Item> Added;

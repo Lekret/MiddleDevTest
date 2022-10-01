@@ -40,23 +40,23 @@ namespace Trade.Scripts.Infrastructure
             var playerBuyStrategy = new PlayerBuyStrategy(player.Wallet);
             var traderBuyStrategy = new TraderBuyStrategy(player.Wallet, trader.ItemCostMultiplier);
             var playerTransferHandler = new ItemTransferHandler();
-            
+
             tradeWindow
                 .Add(tradeView)
                 .Add(coinsView)
                 .Add(itemInfoView)
                 .Add(draggableItemSlot);
-            
+
             coinsView.Init(player.Wallet);
             tradeView.Init(
                 player.Items,
-                trader.Items, 
+                trader.Items,
                 playerTransferHandler,
                 playerBuyStrategy,
                 traderBuyStrategy,
-                draggableItemSlot, 
+                draggableItemSlot,
                 itemInfoView);
-            
+
             tradeWindow.Show();
         }
 

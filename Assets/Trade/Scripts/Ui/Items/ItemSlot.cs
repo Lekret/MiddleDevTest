@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Trade.Scripts.Ui.Items
 {
-    public class ItemSlot : MonoBehaviour, 
+    public class ItemSlot : MonoBehaviour,
         IBeginDragHandler, IDragHandler, IEndDragHandler,
         IPointerEnterHandler, IPointerExitHandler, IDropHandler
     {
@@ -26,7 +26,7 @@ namespace Trade.Scripts.Ui.Items
         void IDragHandler.OnDrag(PointerEventData eventData) => Dragged?.Invoke(this, eventData);
 
         void IEndDragHandler.OnEndDrag(PointerEventData eventData) => DragEnded?.Invoke(this);
-        
+
         void IDropHandler.OnDrop(PointerEventData eventData) => Dropped?.Invoke(this);
 
         void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData) => PointerEntered?.Invoke(this);
@@ -57,7 +57,7 @@ namespace Trade.Scripts.Ui.Items
         {
             _icon.enabled = true;
         }
-        
+
         public void Disable()
         {
             Item = default;
