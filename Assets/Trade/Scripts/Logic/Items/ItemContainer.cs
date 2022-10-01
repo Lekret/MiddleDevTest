@@ -15,7 +15,6 @@ namespace Trade.Scripts.Logic.Items
         
         public IReadOnlyCollection<Item> Items => _items.Values;
         public int Capacity => _capacity;
-
         public event Action<Item> Added;
         public event Action<Item> Removed;
 
