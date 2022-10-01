@@ -5,9 +5,9 @@ namespace Trade.Scripts.Logic
     public class Player
     {
         public Wallet Wallet { get; }
-        public ItemContainer Items { get; }
+        public IItemContainer Items { get; }
 
-        public Player(Wallet wallet, ItemContainer items)
+        public Player(Wallet wallet, IItemContainer items)
         {
             Wallet = wallet;
             Items = items;

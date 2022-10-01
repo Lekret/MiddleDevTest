@@ -4,11 +4,11 @@ namespace Trade.Scripts.Logic.Items
 {
     public class ItemTransferHandler : IItemTransferHandler
     {
-        private ItemContainer _sourceItems;
+        private IItemContainer _sourceItems;
         private Item _sourceItem;
         private IItemTransferStrategy _sourceStrategy;
 
-        public void SetSource(ItemContainer sourceItems, Item sourceItem, IItemTransferStrategy sourceStrategy)
+        public void SetSource(IItemContainer sourceItems, Item sourceItem, IItemTransferStrategy sourceStrategy)
         {
             _sourceItems = sourceItems;
             _sourceItem = sourceItem;
@@ -16,7 +16,7 @@ namespace Trade.Scripts.Logic.Items
         }
 
         public void TransferTo(
-            ItemContainer targetItems,
+            IItemContainer targetItems,
             Item targetItem,
             int targetSlotIndex,
             IItemTransferStrategy targetStrategy)
@@ -52,7 +52,7 @@ namespace Trade.Scripts.Logic.Items
         }
 
         private void TransferByStrategies(
-            ItemContainer targetItems,
+            IItemContainer targetItems,
             Item targetItem,
             int targetSlotIndex,
             IItemTransferStrategy targetStrategy)

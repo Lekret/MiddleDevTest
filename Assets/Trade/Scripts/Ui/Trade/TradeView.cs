@@ -1,6 +1,8 @@
 ﻿using Trade.Scripts.Logic.Items;
 using Trade.Scripts.Logic.Items.TransferStrategies;
 using Trade.Scripts.Ui.Core;
+using Trade.Scripts.Ui.DraggableItemSlot;
+using Trade.Scripts.Ui.ItemInfo;
 using Trade.Scripts.Ui.Items;
 using UnityEngine;
 
@@ -12,8 +14,8 @@ namespace Trade.Scripts.Ui.Trade
         [SerializeField] private ItemGrid _traderGrid;
 
         public void Init(
-            ItemContainer player,
-            ItemContainer trader,
+            IItemContainer player,
+            IItemContainer trader,
             IItemTransferHandler itemTransferHandler,
             IItemTransferStrategy playerStrategy,
             IItemTransferStrategy traderStrategy,

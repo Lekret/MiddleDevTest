@@ -1,7 +1,7 @@
 ﻿using Trade.Scripts.Logic.Items;
 using UnityEngine;
 
-namespace Trade.Scripts.Ui.Items
+namespace Trade.Scripts.Ui.DraggableItemSlot
 {
     public interface IDraggableItemSlot
     {

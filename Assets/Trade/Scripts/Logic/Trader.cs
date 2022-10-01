@@ -4,10 +4,10 @@ namespace Trade.Scripts.Logic
 {
     public class Trader
     {
-        public ItemContainer Items { get; }
+        public IItemContainer Items { get; }
         public float ItemCostMultiplier { get; }
 
-        public Trader(ItemContainer items, float itemCostMultiplier)
+        public Trader(IItemContainer items, float itemCostMultiplier)
         {
             Items = items;
             ItemCostMultiplier = itemCostMultiplier;

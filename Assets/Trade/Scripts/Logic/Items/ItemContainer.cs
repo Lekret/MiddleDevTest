@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Trade.Scripts.Logic.Items
 {
-    public class ItemContainer
+    public class ItemContainer : IItemContainer
     {
         private readonly Dictionary<int, Item> _items = new Dictionary<int, Item>();
         private readonly int _capacity;

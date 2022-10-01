@@ -5,7 +5,8 @@ using Trade.Scripts.Logic.Items.TransferStrategies;
 using Trade.Scripts.StaticData;
 using Trade.Scripts.Ui;
 using Trade.Scripts.Ui.Core;
-using Trade.Scripts.Ui.Items;
+using Trade.Scripts.Ui.DraggableItemSlot;
+using Trade.Scripts.Ui.ItemInfo;
 using Trade.Scripts.Ui.Trade;
 using UnityEngine;
 
@@ -60,7 +61,7 @@ namespace Trade.Scripts.Infrastructure
             tradeWindow.Show();
         }
 
-        private static void AddItems(ItemContainer items, IEnumerable<ItemData> itemData, float costMultiplier = 1)
+        private static void AddItems(IItemContainer items, IEnumerable<ItemData> itemData, float costMultiplier = 1)
         {
             foreach (var data in itemData)
             {

@@ -1,19 +1,21 @@
 ﻿using Trade.Scripts.Logic.Items;
 using Trade.Scripts.Logic.Items.TransferStrategies;
+using Trade.Scripts.Ui.DraggableItemSlot;
+using Trade.Scripts.Ui.ItemInfo;
 using UnityEngine.EventSystems;
 
 namespace Trade.Scripts.Ui.Items
 {
     public class ItemSlotHandler
     {
-        private readonly ItemContainer _items;
+        private readonly IItemContainer _items;
         private readonly IDraggableItemSlot _draggableItemSlot;
         private readonly IItemTransferHandler _itemTransferHandler;
         private readonly IItemTransferStrategy _itemTransferStrategy;
         private readonly IItemInfo _itemInfo;
 
         public ItemSlotHandler(
-            ItemContainer items,
+            IItemContainer items,
             IDraggableItemSlot draggableItemSlot,
             IItemTransferHandler itemTransferHandler,
             IItemTransferStrategy itemTransferStrategy,

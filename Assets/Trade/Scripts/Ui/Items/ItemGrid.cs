@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Trade.Scripts.Logic.Items;
 using Trade.Scripts.Logic.Items.TransferStrategies;
+using Trade.Scripts.Ui.DraggableItemSlot;
+using Trade.Scripts.Ui.ItemInfo;
 using UnityEngine;
 
 namespace Trade.Scripts.Ui.Items
@@ -10,12 +12,12 @@ namespace Trade.Scripts.Ui.Items
         [SerializeField] private ItemSlot _slotPrefab;
         [SerializeField] private Transform _slotContainer;
 
-        private ItemContainer _items;
+        private IItemContainer _items;
         private ItemSlotHandler _itemSlotHandler;
         private readonly List<ItemSlot> _slots = new List<ItemSlot>();
 
         public void Init(
-            ItemContainer items,
+            IItemContainer items,
             IDraggableItemSlot draggableItemSlot,
             IItemTransferHandler itemTransferHandler,
             IItemTransferStrategy itemTransferStrategy,
