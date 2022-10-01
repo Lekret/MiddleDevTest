@@ -46,7 +46,8 @@ namespace Trade.Scripts.Infrastructure
             tradeView.Init(
                 player.Items,
                 trader.Items, 
-                draggableItemSlot, itemTransferHandler,
+                draggableItemSlot, 
+                itemTransferHandler,
                 itemInfoView);
             
             tradeWindow.Show();
