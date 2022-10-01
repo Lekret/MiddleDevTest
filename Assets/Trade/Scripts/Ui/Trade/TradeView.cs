@@ -1,4 +1,5 @@
 ﻿using Trade.Scripts.Logic.Items;
+using Trade.Scripts.Logic.Items.TransferStrategies;
 using Trade.Scripts.Ui.Core;
 using Trade.Scripts.Ui.Items;
 using UnityEngine;
@@ -10,14 +11,17 @@ namespace Trade.Scripts.Ui.Trade
         [SerializeField] private ItemGrid _playerGrid;
         [SerializeField] private ItemGrid _traderGrid;
         
-        public void Init(ItemContainer player,
+        public void Init(
+            ItemContainer player,
             ItemContainer trader,
+            IItemTransferHandler itemTransferHandler,
+            IItemTransferStrategy playerStrategy,
+            IItemTransferStrategy traderStrategy,
             IDraggableItemSlot draggableItemSlot,
-            IItemTransferHandler itemTransferHandler, 
             IItemInfo itemInfo)
         {
-            _playerGrid.Init(player, draggableItemSlot, itemTransferHandler, itemInfo);
-            _traderGrid.Init(trader, draggableItemSlot, itemTransferHandler, itemInfo);
+            _playerGrid.Init(player, draggableItemSlot, itemTransferHandler, playerStrategy, itemInfo);
+            _traderGrid.Init(trader, draggableItemSlot, itemTransferHandler, traderStrategy, itemInfo);
         }
     }
 }

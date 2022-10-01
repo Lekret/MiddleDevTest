@@ -5,18 +5,28 @@ namespace Trade.Scripts.Logic.Items
 {
     public class ItemContainer
     {
-        private readonly int _capacity;
         private readonly Dictionary<int, Item> _items = new Dictionary<int, Item>();
-        public IReadOnlyCollection<Item> Items => _items.Values;
-        public int Capacity => _capacity;
-
-        public event Action<Item> Added;
-        public event Action<Item> Removed;
+        private int _capacity;
 
         public ItemContainer(int capacity)
         {
             _capacity = capacity;
         }
+        
+        public IReadOnlyCollection<Item> Items => _items.Values;
+        public int Capacity
+        {
+            get => _capacity;
+            set
+            {
+                _capacity = value;
+                CapacityChanged?.Invoke();
+            }
+        }
+        
+        public event Action CapacityChanged;
+        public event Action<Item> Added;
+        public event Action<Item> Removed;
 
         public void Add(Item item)
         {

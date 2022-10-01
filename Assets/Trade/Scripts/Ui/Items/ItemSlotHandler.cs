@@ -1,4 +1,5 @@
 ﻿using Trade.Scripts.Logic.Items;
+using Trade.Scripts.Logic.Items.TransferStrategies;
 using UnityEngine.EventSystems;
 
 namespace Trade.Scripts.Ui.Items
@@ -8,18 +9,21 @@ namespace Trade.Scripts.Ui.Items
         private readonly ItemContainer _items;
         private readonly IDraggableItemSlot _draggableItemSlot;
         private readonly IItemTransferHandler _itemTransferHandler;
+        private readonly IItemTransferStrategy _itemTransferStrategy;
         private readonly IItemInfo _itemInfo;
 
         public ItemSlotHandler(
             ItemContainer items,
             IDraggableItemSlot draggableItemSlot, 
             IItemTransferHandler itemTransferHandler,
+            IItemTransferStrategy itemTransferStrategy,
             IItemInfo itemInfo)
         {
             _items = items;
             _draggableItemSlot = draggableItemSlot;
             _itemTransferHandler = itemTransferHandler;
             _itemInfo = itemInfo;
+            _itemTransferStrategy = itemTransferStrategy;
         }
 
         public void OnSlotDragBegan(ItemSlot slot, PointerEventData eventData)
@@ -28,7 +32,7 @@ namespace Trade.Scripts.Ui.Items
                 return;
             _draggableItemSlot.SetItem(slot.Item);
             _draggableItemSlot.SetPosition(eventData.position);
-            _itemTransferHandler.SetSource(_items, slot.Item);
+            _itemTransferHandler.SetSource(_items, slot.Item, _itemTransferStrategy);
             _itemInfo.Disable();
             slot.HideItem();
         }
@@ -51,7 +55,7 @@ namespace Trade.Scripts.Ui.Items
         
         public void OnSlotDropped(ItemSlot slot)
         {
-            _itemTransferHandler.TransferTo(_items, slot.Item, slot.Index);
+            _itemTransferHandler.TransferTo(_items, slot.Item, slot.Index, _itemTransferStrategy);
             _draggableItemSlot.Hide();
             if (slot.Item.IsValid())
             {

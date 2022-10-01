@@ -1,8 +1,9 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Trade.Scripts.Logic
 {
-    public class Wallet
+    public class Wallet : IWallet
     {
         private int _coins;
 
@@ -20,15 +21,17 @@ namespace Trade.Scripts.Logic
             CoinsCountChanged?.Invoke();
         }
 
-        public bool TrySubtract(int toSubtract)
+        public void Subtract(int toSubtract)
         {
-            if (_coins > toSubtract)
+            if (_coins >= toSubtract)
             {
                 _coins -= toSubtract;
                 CoinsCountChanged?.Invoke();
-                return true;
             }
-            return false;
+            else
+            {
+                Debug.LogError($"Invalid wallet subtract: _coins({_coins}), toSubtract({toSubtract})");
+            }
         }
     }
 }

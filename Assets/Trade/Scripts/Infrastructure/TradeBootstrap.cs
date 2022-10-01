@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Trade.Scripts.Logic;
 using Trade.Scripts.Logic.Items;
+using Trade.Scripts.Logic.Items.TransferStrategies;
 using Trade.Scripts.StaticData;
 using Trade.Scripts.Ui;
 using Trade.Scripts.Ui.Core;
@@ -20,8 +21,8 @@ namespace Trade.Scripts.Infrastructure
         {
             var player = new Player(new Wallet(PlayerData.InitialCoins), new ItemContainer(10));
             AddItems(player.Items, PlayerData.InitialItems);
-            var trader = new Trader(new ItemContainer(10));
-            AddItems(trader.Items, TraderData.InitialItems, TraderData.SellCostDecreaseMultiplier);
+            var trader = new Trader(new ItemContainer(10), TraderData.ItemCostMultiplier);
+            AddItems(trader.Items, TraderData.InitialItems, TraderData.ItemCostMultiplier);
 
             CreateUi(player, trader);
         }
@@ -35,7 +36,11 @@ namespace Trade.Scripts.Infrastructure
             var tradeView = uiFactory.Create<TradeView>();
             var coinsView = uiFactory.Create<CoinsView>();
             var itemInfoView = uiFactory.Create<ItemInfoView>();
-            var itemTransferHandler = new ItemTransferHandler();
+
+            var playerBuyStrategy = new PlayerBuyStrategy(player.Wallet);
+            var traderBuyStrategy = new TraderBuyStrategy(player.Wallet, trader.ItemCostMultiplier);
+            var playerTransferHandler = new ItemTransferHandler();
+            
             tradeWindow
                 .Add(tradeView)
                 .Add(coinsView)
@@ -46,8 +51,10 @@ namespace Trade.Scripts.Infrastructure
             tradeView.Init(
                 player.Items,
                 trader.Items, 
+                playerTransferHandler,
+                playerBuyStrategy,
+                traderBuyStrategy,
                 draggableItemSlot, 
-                itemTransferHandler,
                 itemInfoView);
             
             tradeWindow.Show();

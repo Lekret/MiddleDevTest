@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Trade.Scripts.Logic.Items;
+using Trade.Scripts.Logic.Items.TransferStrategies;
 using UnityEngine;
 
 namespace Trade.Scripts.Ui.Items
@@ -13,9 +14,11 @@ namespace Trade.Scripts.Ui.Items
         private ItemSlotHandler _itemSlotHandler;
         private readonly List<ItemSlot> _slots = new List<ItemSlot>();
 
-        public void Init(ItemContainer items,
+        public void Init(
+            ItemContainer items,
             IDraggableItemSlot draggableItemSlot,
-            IItemTransferHandler itemTransferHandler, 
+            IItemTransferHandler itemTransferHandler,
+            IItemTransferStrategy itemTransferStrategy,
             IItemInfo itemInfo)
         {
             _items = items;
@@ -23,6 +26,7 @@ namespace Trade.Scripts.Ui.Items
                 items, 
                 draggableItemSlot, 
                 itemTransferHandler, 
+                itemTransferStrategy,
                 itemInfo);
             ConfigureSize();
             InitSlots(items.Items);
