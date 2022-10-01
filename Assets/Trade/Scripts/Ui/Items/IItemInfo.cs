@@ -1,4 +1,4 @@
-﻿using Trade.Scripts.Logic;
+﻿using Trade.Scripts.Logic.Items;
 using UnityEngine;
 
 namespace Trade.Scripts.Ui.Items

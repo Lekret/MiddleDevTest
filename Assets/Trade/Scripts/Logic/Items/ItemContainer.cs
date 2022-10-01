@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Trade.Scripts.Logic
+namespace Trade.Scripts.Logic.Items
 {
     public class ItemContainer
     {

@@ -1,5 +1,5 @@
 ﻿using System;
-using Trade.Scripts.Logic;
+using Trade.Scripts.Logic.Items;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;

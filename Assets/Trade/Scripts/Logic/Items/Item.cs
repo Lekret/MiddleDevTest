@@ -1,7 +1,7 @@
 ﻿using Trade.Scripts.StaticData;
 using UnityEngine;
 
-namespace Trade.Scripts.Logic
+namespace Trade.Scripts.Logic.Items
 {
     public struct Item
     {

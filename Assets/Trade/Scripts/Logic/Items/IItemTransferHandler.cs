@@ -1,6 +1,4 @@
-﻿using Trade.Scripts.Logic;
-
-namespace Trade.Scripts.Ui.Handlers
+﻿namespace Trade.Scripts.Logic.Items
 {
     public interface IItemTransferHandler
     {

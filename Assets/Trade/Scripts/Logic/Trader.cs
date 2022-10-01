@@ -1,4 +1,6 @@
-﻿namespace Trade.Scripts.Logic
+﻿using Trade.Scripts.Logic.Items;
+
+namespace Trade.Scripts.Logic
 {
     public class Trader
     {

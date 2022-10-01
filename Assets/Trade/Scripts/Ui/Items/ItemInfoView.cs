@@ -1,5 +1,5 @@
 ﻿using TMPro;
-using Trade.Scripts.Logic;
+using Trade.Scripts.Logic.Items;
 using Trade.Scripts.Ui.Core;
 using UnityEngine;
 

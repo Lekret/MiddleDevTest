@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using Trade.Scripts.Logic;
-using Trade.Scripts.Ui.Handlers;
+using Trade.Scripts.Logic.Items;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
