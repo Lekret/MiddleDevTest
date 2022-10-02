@@ -10,6 +10,9 @@ namespace Rectangles.Scripts
         public IEnumerable<Vector2> GetPath(Vector2 source, Vector2 target, IEnumerable<Edge> edges)
         {
             var edgesList = edges.ToList();
+            if (edgesList.Count == 0)
+                return Array.Empty<Vector2>();
+            
             if (!edgesList[0].First.Contains(source))
                 return Array.Empty<Vector2>();
 
