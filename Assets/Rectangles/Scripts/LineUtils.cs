@@ -2,7 +2,7 @@
 
 namespace Rectangles.Scripts
 {
-    public static class VectorUtils
+    public static class LineUtils
     {
         public static bool LinesIntersect(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4) 
         {
