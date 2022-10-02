@@ -21,17 +21,21 @@ namespace Rectangles.Scripts
 
             var path = new List<Vector2>();
             path.Add(source);
-            foreach (var edge in edgesList)
-            {
-                var edgeMid = (edge.Start + edge.End) / 2f;
-                path.Add(edgeMid);
-            }
-
+            CollectEdgeMiddlePoints(path, edgesList);
             path.Add(target);
             RemoveUnnecessaryPoints(path, edgesList);
             return path;
         }
-        
+
+        private static void CollectEdgeMiddlePoints(ICollection<Vector2> path, List<Edge> edges)
+        {
+            foreach (var edge in edges)
+            {
+                var edgeMid = (edge.Start + edge.End) / 2f;
+                path.Add(edgeMid);
+            }
+        }
+
         private static void RemoveUnnecessaryPoints(List<Vector2> path, List<Edge> edgesList)
         {
             var edgeIdx = 0;
