@@ -9,22 +9,40 @@ namespace Rectangles.Scripts
     {
         public IEnumerable<Vector2> GetPath(Vector2 source, Vector2 target, IEnumerable<Edge> edges)
         {
-            if (!edges.FirstOrDefault().First.Contains(source))
+            var edgesList = edges.ToList();
+            if (!edgesList[0].First.Contains(source))
                 return Array.Empty<Vector2>();
 
-            if (!edges.LastOrDefault().Second.Contains(target))
+            if (!edgesList[edgesList.Count - 1].Second.Contains(target))
                 return Array.Empty<Vector2>();
 
-            var result = new List<Vector2>();
-            result.Add(source);
-            foreach (var edge in edges)
+            var path = new List<Vector2>();
+            path.Add(source);
+            foreach (var edge in edgesList)
             {
                 var edgeMid = (edge.Start + edge.End) / 2f;
-                result.Add(edgeMid);
+                path.Add(edgeMid);
             }
 
-            result.Add(target);
-            return result;
+            path.Add(target);
+            SmoothenPath(path, edgesList);
+            return path;
+        }
+
+        private static void SmoothenPath(List<Vector2> path, List<Edge> edgesList)
+        {
+            for (var i = 0; i < path.Count - 2;)
+            {
+                var edge = edgesList[i];
+                if (VectorUtils.DoLinesIntersect(path[i], path[i + 2], edge.Start, edge.End))
+                {
+                    path.RemoveAt(i + 1);
+                }
+                else
+                {
+                    i++;
+                }
+            }
         }
     }
 }
