@@ -43,6 +43,9 @@ namespace Rectangles.Scripts
             {
                 DrawRectangle(edge.First);
                 DrawRectangle(edge.Second);
+                Gizmos.color = Color.red;
+                Gizmos.DrawLine(edge.Start, edge.End);
+                Gizmos.color = Color.white;
             }
         }
 
