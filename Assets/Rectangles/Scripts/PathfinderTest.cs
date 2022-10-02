@@ -58,7 +58,7 @@ namespace Rectangles.Scripts
         private void DrawLineRendererPoints()
         {
             Gizmos.color = Color.yellow;
-            if (_positions == null || _positions.Length < _lineRenderer.positionCount)
+            if (_positions.Length != _lineRenderer.positionCount)
                 _positions = new Vector3[_lineRenderer.positionCount];
 
             _lineRenderer.GetPositions(_positions);
