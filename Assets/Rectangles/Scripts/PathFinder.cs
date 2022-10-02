@@ -28,11 +28,11 @@ namespace Rectangles.Scripts
             }
 
             path.Add(target);
-            SmoothenPath(path, edgesList);
+            RemoveUnnecessaryPoints(path, edgesList);
             return path;
         }
 
-        private static void SmoothenPath(List<Vector2> path, List<Edge> edgesList)
+        private static void RemoveUnnecessaryPoints(List<Vector2> path, List<Edge> edgesList)
         {
             for (var i = 0; i < path.Count - 2;)
             {
