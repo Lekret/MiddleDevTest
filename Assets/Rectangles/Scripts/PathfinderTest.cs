@@ -39,6 +39,11 @@ namespace Rectangles.Scripts
 
         private void OnDrawGizmos()
         {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(_from, 0.5f);
+            Gizmos.DrawWireSphere(_to, 0.5f);
+            Gizmos.color = Color.white;
+            
             foreach (var edge in _edges)
             {
                 DrawRectangle(edge.First);
