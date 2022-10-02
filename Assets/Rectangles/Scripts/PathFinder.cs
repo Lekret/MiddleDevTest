@@ -37,7 +37,7 @@ namespace Rectangles.Scripts
             for (var i = 0; i < path.Count - 2;)
             {
                 var edge = edgesList[i];
-                if (VectorUtils.LinesInteresct(path[i], path[i + 2], edge.Start, edge.End))
+                if (VectorUtils.LinesIntersect(path[i], path[i + 2], edge.Start, edge.End))
                 {
                     path.RemoveAt(i + 1);
                 }
