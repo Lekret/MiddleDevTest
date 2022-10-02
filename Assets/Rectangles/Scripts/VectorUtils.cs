@@ -4,7 +4,7 @@ namespace Rectangles.Scripts
 {
     public class VectorUtils
     {
-        public static bool DoLinesIntersect(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4) 
+        public static bool LinesInteresct(Vector2 p1, Vector2 p2, Vector2 p3, Vector2 p4) 
         {
             var o1 = Orientation(p1, p2, p3);
             var o2 = Orientation(p1, p2, p4);
