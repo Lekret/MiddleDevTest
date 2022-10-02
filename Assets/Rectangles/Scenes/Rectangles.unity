@@ -182,20 +182,20 @@ MonoBehaviour:
       Min: {x: 8, y: 5}
       Max: {x: 12, y: 8}
     Second:
-      Min: {x: 12, y: 6}
+      Min: {x: 12, y: 7}
       Max: {x: 14, y: 8}
-    Start: {x: 12, y: 6}
+    Start: {x: 12, y: 7}
     End: {x: 12, y: 8}
   - First:
-      Min: {x: 12, y: 6}
+      Min: {x: 12, y: 7}
       Max: {x: 14, y: 8}
     Second:
-      Min: {x: 14, y: 7}
+      Min: {x: 14, y: 7.5}
       Max: {x: 16, y: 8}
-    Start: {x: 14, y: 7}
+    Start: {x: 14, y: 7.5}
     End: {x: 14, y: 8}
   - First:
-      Min: {x: 14, y: 7}
+      Min: {x: 14, y: 7.5}
       Max: {x: 16, y: 8}
     Second:
       Min: {x: 16, y: 7}
@@ -391,11 +391,12 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 2, y: 5, z: 0}
-  - {x: 4, y: 2, z: 0}
-  - {x: 6.5, y: 2, z: 0}
-  - {x: 8.5, y: 5, z: 0}
+  - {x: 5, y: 2, z: 0}
+  - {x: 6, y: 2, z: 0}
+  - {x: 9, y: 5, z: 0}
+  - {x: 12, y: 7, z: 0}
   - {x: 14, y: 7.5, z: 0}
-  - {x: 20, y: 7.5, z: 0}
+  - {x: 20, y: 8, z: 0}
   - {x: 20.5, y: 10.5, z: 0}
   m_Parameters:
     serializedVersion: 3
