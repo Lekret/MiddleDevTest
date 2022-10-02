@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lineRenderer: {fileID: 1805309650}
   _from: {x: 2, y: 5}
-  _to: {x: 20.5, y: 10.5}
+  _to: {x: 20.5, y: 11.5}
   _edges:
   - First:
       Min: {x: 1, y: 2}
@@ -226,6 +226,14 @@ MonoBehaviour:
       Max: {x: 21, y: 11}
     Start: {x: 20, y: 9}
     End: {x: 21, y: 9}
+  - First:
+      Min: {x: 20, y: 9}
+      Max: {x: 21, y: 11}
+    Second:
+      Min: {x: 20, y: 11}
+      Max: {x: 21, y: 12}
+    Start: {x: 20, y: 11}
+    End: {x: 21, y: 11}
 --- !u!4 &522171065
 Transform:
   m_ObjectHideFlags: 0
@@ -396,7 +404,7 @@ LineRenderer:
   - {x: 8.5, y: 5, z: 0}
   - {x: 12, y: 7.5, z: 0}
   - {x: 20, y: 7.75, z: 0}
-  - {x: 20.5, y: 10.5, z: 0}
+  - {x: 20.5, y: 11.5, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
