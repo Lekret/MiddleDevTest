@@ -31,19 +31,23 @@ namespace Rectangles.Scripts
             RemoveUnnecessaryPoints(path, edgesList);
             return path;
         }
-
+        
         private static void RemoveUnnecessaryPoints(List<Vector2> path, List<Edge> edgesList)
         {
-            for (var i = 0; i < path.Count - 2;)
+            var edgeIdx = 0;
+            var pathIdx = 0;
+            while (pathIdx < path.Count - 2)
             {
-                var edge = edgesList[i];
-                if (VectorUtils.LinesIntersect(path[i], path[i + 2], edge.Start, edge.End))
+                var edge = edgesList[pathIdx];
+                if (VectorUtils.LinesIntersect(path[pathIdx], path[pathIdx + 2], edge.Start, edge.End))
                 {
-                    path.RemoveAt(i + 1);
+                    path.RemoveAt(pathIdx + 1);
+                    edgesList.RemoveAt(edgeIdx);
                 }
                 else
                 {
-                    i++;
+                    pathIdx++;
+                    edgeIdx++;
                 }
             }
         }
