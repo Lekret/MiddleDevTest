@@ -36,17 +36,17 @@ namespace Rectangles.Scripts
             }
         }
 
-        private static void RemoveUnnecessaryPoints(List<Vector2> path, List<Edge> edgesList)
+        private static void RemoveUnnecessaryPoints(List<Vector2> path, List<Edge> edges)
         {
             var edgeIdx = 0;
             var pathIdx = 0;
             while (pathIdx < path.Count - 2)
             {
-                var edge = edgesList[pathIdx];
+                var edge = edges[pathIdx];
                 if (LineUtils.LinesIntersect(path[pathIdx], path[pathIdx + 2], edge.Start, edge.End))
                 {
                     path.RemoveAt(pathIdx + 1);
-                    edgesList.RemoveAt(edgeIdx);
+                    edges.RemoveAt(edgeIdx);
                 }
                 else
                 {
